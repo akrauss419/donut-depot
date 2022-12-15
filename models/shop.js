@@ -38,6 +38,11 @@ const shopSchema = new Schema({
   donut: {
     type: Schema.Types.ObjectId,
     ref: 'Donut'
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 }, {
   timestamps: true

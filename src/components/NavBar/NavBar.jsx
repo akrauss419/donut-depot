@@ -9,11 +9,13 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
-      <Link to="/donuts">All Donuts</Link>
+      <Link to="/donuts">Donut Case</Link>
       &nbsp; | &nbsp;
       <Link to="/donuts/new">Add a Donut</Link>
       &nbsp; | &nbsp;
       <Link to="/shops">Donut Shops</Link>
+      &nbsp; | &nbsp;
+      <Link to="/shops/new">Add a Shop</Link>
       &nbsp;&nbsp;
       <span>Welcome, {user.name}</span>
       &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>

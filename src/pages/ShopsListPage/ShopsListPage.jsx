@@ -1,4 +1,4 @@
-export default function ShopsListPage() {
+export default function ShopsListPage({ shops }) {
   return(
     <h1>Donut Shops</h1>
   );
