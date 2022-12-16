@@ -24,7 +24,7 @@ export default function NewShopPage({ addShop }) {
           name="name"
           type="text"
           value={newShop.name}
-          onChange={(evt) => setNewShop({ name: evt.target.value })}
+          onChange={(evt) => setNewShop({...newShop, [evt.target.name]: evt.target.value })}
           placeholder="Name"
           required
         />
@@ -34,7 +34,7 @@ export default function NewShopPage({ addShop }) {
           name="location"
           type="text"
           value={newShop.location}
-          onChange={(evt) => setNewShop({ location: evt.target.value })}
+          onChange={(evt) => setNewShop({...newShop, [evt.target.name]: evt.target.value })}
           placeholder="Street, City, State, Zip"
           required
         />

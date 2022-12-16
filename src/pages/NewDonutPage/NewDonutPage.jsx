@@ -36,7 +36,7 @@ export default function NewDonutPage({ addDonut }) {
           name="flavor"
           type="text"
           value={newDonut.flavor}
-          onChange={(evt) => setNewDonut({ flavor: evt.target.value })}
+          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
           placeholder="Glazed, Chocolate, etc."
           required
         />
@@ -44,7 +44,7 @@ export default function NewDonutPage({ addDonut }) {
         <label htmlFor="select">Type:</label>
         <select
           name="type"
-          onChange={(evt) => setNewDonut({ type: evt.target.value })}
+          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
         >
           <option value={newDonut.type}>Dough</option>
           <option value={newDonut.type}>Cake</option>
@@ -56,7 +56,7 @@ export default function NewDonutPage({ addDonut }) {
           type="radio"
           id="true"
           value={newDonut.sprinkles}
-          onChange={(evt) => setNewDonut({ sprinkles: evt.target.value })}
+          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
         />
         <label htmlFor="radio">True</label>
         <input 
@@ -64,7 +64,7 @@ export default function NewDonutPage({ addDonut }) {
           type="radio"
           id="false"
           value={newDonut.sprinkles}
-          onChange={(evt) => setNewDonut({ sprinkles: evt.target.value })}
+          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
         />
         <label htmlFor="radio">False</label>
 
@@ -72,7 +72,7 @@ export default function NewDonutPage({ addDonut }) {
         <textarea
           name="unique"
           value={newDonut.unique}
-          onChange={(evt) => setNewDonut({ unique: evt.target.value })}
+          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
           placeholder="What else makes this donut unique? (Special toppings, filling, etc.)"
         />
 
@@ -81,7 +81,7 @@ export default function NewDonutPage({ addDonut }) {
           name="shop"
           type="text"
           value={newDonut.shop}
-          onChange={(evt) => setNewDonut({ shop: evt.target.value })}
+          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
           placeholder="Who made this donut?"
           required
         />
@@ -90,7 +90,7 @@ export default function NewDonutPage({ addDonut }) {
         <textarea
           name="review"
           value={newDonut.review}
-          onChange={(evt) => setNewDonut({ review: evt.target.value })}
+          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
           placeholder="Review this donut"
           required
         />
@@ -98,7 +98,7 @@ export default function NewDonutPage({ addDonut }) {
         <label htmlFor="select">Rating:</label>
         <select
           name="rating"
-          onChange={(evt) => setNewDonut({ rating: evt.target.value })}
+          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
         >
           <option value={newDonut.rating}>1</option>
           <option value={newDonut.rating}>2</option>

@@ -21,7 +21,6 @@ export default function App() {
   async function addDonut(donut) {
     const newDonut = await donutsAPI.create(donut);
     setDonuts([...donuts, newDonut]);
-    console.log(setDonuts);
   }
 
   async function addShop(shop) {

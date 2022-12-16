@@ -4,11 +4,9 @@ const Schema = mongoose.Schema;
 const reviewSchema = new Schema({
   content: {
     type: String,
-    required: true
   },
   rating: {
     type: Number,
-    required: true
   },
   // like: [{
   //   type: Schema.Types.ObjectId,
@@ -25,11 +23,9 @@ const reviewSchema = new Schema({
 const shopSchema = new Schema({
   name: {
     type: String,
-    required: true
   },
   location: {
     type: String,
-    required: true
   },
   // favorite: [{
   //   type: Schema.Types.ObjectId,

@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 const commentSchema = new Schema({
   content: {
     type: String,
-    required: true
   },
   // like: [{
   //   type: Schema.Types.ObjectId,
@@ -13,7 +12,6 @@ const commentSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true
   }
 }, {
   timestamps: true
@@ -22,26 +20,21 @@ const commentSchema = new Schema({
 const donutSchema = new Schema({
   flavor: {
     type: String,
-    required: true
   },
   type: {
     type: String,
-    required: true
   },
   sprinkles: {
     type: Boolean,
-    required: true
   },
   unique: {
     type: String,
   },
   review: {
     type: String,
-    required: true
   },
   rating: {
     type: Number,
-    required: true
   },
   // favorite: [{
   //   type: Schema.Types.ObjectId,
@@ -52,7 +45,6 @@ const donutSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true
   }
 }, {
   timestamps: true
