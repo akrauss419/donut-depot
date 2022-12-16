@@ -3,8 +3,8 @@ import { useState } from 'react';
 export default function NewDonutPage({ addDonut }) {
   const [newDonut, setNewDonut] = useState({
     flavor: "",
-    type: "",
-    sprinkles: false,
+    type: "Dough",
+    sprinkles: "No",
     unique: "",
     shop: "",
     review: "",
@@ -17,8 +17,8 @@ export default function NewDonutPage({ addDonut }) {
     addDonut(newDonut);
     setNewDonut({
       flavor: "",
-      type: "",
-      sprinkles: false,
+      type: "Dough",
+      sprinkles: "No",
       unique: "",
       shop: "",
       review: "",
@@ -44,29 +44,35 @@ export default function NewDonutPage({ addDonut }) {
         <label htmlFor="select">Type:</label>
         <select
           name="type"
+          value={newDonut.type}
           onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
+          required
         >
-          <option value={newDonut.type}>Dough</option>
-          <option value={newDonut.type}>Cake</option>
+          <option value="Dough">Dough</option>
+          <option value="Cake">Cake</option>
         </select>
 
-        <label htmlFor="">Sprinkles:</label>
-        <input 
-          name="sprinkles"
-          type="radio"
-          id="true"
+        <div
           value={newDonut.sprinkles}
           onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
-        />
-        <label htmlFor="radio">True</label>
-        <input 
-          name="sprinkles"
-          type="radio"
-          id="false"
-          value={newDonut.sprinkles}
-          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
-        />
-        <label htmlFor="radio">False</label>
+        >
+          <label htmlFor="radio">Sprinkles:</label>
+          <label htmlFor="radio">Yes</label>
+          <input 
+            name="sprinkles"
+            type="radio"
+            value="Yes"
+            id="Yes"
+          />
+          <label htmlFor="radio">No</label>
+          <input 
+            name="sprinkles"
+            type="radio"
+            value="No"
+            id="No"
+            defaultChecked
+          />
+        </div>
 
         <label htmlFor="textarea">Other qualities:</label>
         <textarea
@@ -98,13 +104,15 @@ export default function NewDonutPage({ addDonut }) {
         <label htmlFor="select">Rating:</label>
         <select
           name="rating"
+          value={newDonut.rating}
           onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
+          required
         >
-          <option value={newDonut.rating}>1</option>
-          <option value={newDonut.rating}>2</option>
-          <option value={newDonut.rating}>3</option>
-          <option value={newDonut.rating}>4</option>
-          <option value={newDonut.rating}>5</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
         </select>
 
         <button type="submit">Add to Donut Case</button>

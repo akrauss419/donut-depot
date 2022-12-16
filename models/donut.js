@@ -25,7 +25,7 @@ const donutSchema = new Schema({
     type: String,
   },
   sprinkles: {
-    type: Boolean,
+    type: String,
   },
   unique: {
     type: String,
