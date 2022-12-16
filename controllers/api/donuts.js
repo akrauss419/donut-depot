@@ -17,6 +17,7 @@ async function create(req, res) {
     donut.save();
     res.json(donut);
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 }

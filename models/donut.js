@@ -6,9 +6,10 @@ const commentSchema = new Schema({
     type: String,
     required: true
   },
-  like: {
-    type: Boolean
-  },
+  // like: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'User'
+  // }],
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -31,6 +32,9 @@ const donutSchema = new Schema({
     type: Boolean,
     required: true
   },
+  unique: {
+    type: String,
+  },
   review: {
     type: String,
     required: true
@@ -39,15 +43,12 @@ const donutSchema = new Schema({
     type: Number,
     required: true
   },
-  favorite: {
-    type: Boolean,
-  },
+  // favorite: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'User'
+  // }],
   comments: [commentSchema],
-  shop: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    ref: 'Shop'
-  },
+  shop: String,
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',

@@ -21,6 +21,7 @@ export default function App() {
   async function addDonut(donut) {
     const newDonut = await donutsAPI.create(donut);
     setDonuts([...donuts, newDonut]);
+    console.log(setDonuts);
   }
 
   async function addShop(shop) {
@@ -36,7 +37,7 @@ export default function App() {
           <Routes>
             {/* Route components in here */}
             <Route path="/donuts" element={<DonutsListPage donuts={donuts} />} />
-            <Route path="/donuts/:donutFlavor" element={<DonutDetailPage />} />
+            <Route path="/donuts/:donutFlavor" element={<DonutDetailPage donuts={donuts}/>} />
             <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} addDonut={addDonut} />} />
             <Route path="/shops" element={<ShopsListPage shops={shops} />} />
             <Route path="/shops/:shopName" element={<ShopDetailPage />} />

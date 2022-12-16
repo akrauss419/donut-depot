@@ -10,13 +10,13 @@ const reviewSchema = new Schema({
     type: Number,
     required: true
   },
-  like: {
-    type: Boolean
-  },
+  // like: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'User'
+  // }],
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+    ref: 'User'
   }
 }, {
   timestamps: true
@@ -31,18 +31,18 @@ const shopSchema = new Schema({
     type: String,
     required: true
   },
-  favorite: {
-    type: Boolean
-  },
+  // favorite: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'User'
+  // }],
   review: [reviewSchema],
-  donut: {
-    type: Schema.Types.ObjectId,
-    ref: 'Donut'
-  },
+  // donut: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Donut'
+  // }],
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+    ref: 'User'
   }
 }, {
   timestamps: true

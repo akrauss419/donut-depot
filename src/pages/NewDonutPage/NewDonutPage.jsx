@@ -5,6 +5,7 @@ export default function NewDonutPage({ addDonut }) {
     flavor: "",
     type: "",
     sprinkles: false,
+    unique: "",
     shop: "",
     review: "",
     rating: 3,
@@ -18,6 +19,7 @@ export default function NewDonutPage({ addDonut }) {
       flavor: "",
       type: "",
       sprinkles: false,
+      unique: "",
       shop: "",
       review: "",
       rating: 3,
@@ -65,6 +67,14 @@ export default function NewDonutPage({ addDonut }) {
           onChange={(evt) => setNewDonut({ sprinkles: evt.target.value })}
         />
         <label htmlFor="radio">False</label>
+
+        <label htmlFor="textarea">Other qualities:</label>
+        <textarea
+          name="unique"
+          value={newDonut.unique}
+          onChange={(evt) => setNewDonut({ unique: evt.target.value })}
+          placeholder="What else makes this donut unique? (Special toppings, filling, etc.)"
+        />
 
         <label htmlFor="input">Shop:</label>
         <input
