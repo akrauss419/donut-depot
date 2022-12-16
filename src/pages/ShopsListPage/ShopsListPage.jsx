@@ -1,5 +1,7 @@
+import ShopCard from '../../components/ShopCard/ShopCard';
+
 export default function ShopsListPage({ shops }) {
   return(
-    <h1>Donut Shops</h1>
+    <h1>Explore Donut Shops</h1>
   );
 }
