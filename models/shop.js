@@ -35,7 +35,7 @@ const shopSchema = new Schema({
   //   type: Schema.Types.ObjectId,
   //   ref: 'User'
   // }],
-  review: [reviewSchema],
+  reviews: [reviewSchema],
   // donut: [{
   //   type: Schema.Types.ObjectId,
   //   ref: 'Donut'
