@@ -39,7 +39,7 @@ export default function App() {
             <Route path="/donuts/:donutFlavor" element={<DonutDetailPage donuts={donuts}/>} />
             <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} addDonut={addDonut} />} />
             <Route path="/shops" element={<ShopsListPage shops={shops} />} />
-            <Route path="/shops/:shopName" element={<ShopDetailPage />} />
+            <Route path="/shops/:shopName" element={<ShopDetailPage shops={shops}/>} />
             <Route path="/shops/new" element={<NewShopPage shops={shops} addShop={addShop} />} />
           </Routes>
         </>

@@ -2,8 +2,10 @@ import { useParams } from 'react-router-dom';
 
 export default function DonutDetailPage({ donuts }) {
   const { donutFlavor } = useParams();
-
   const donut = donuts.find((d) => d.flavor === donutFlavor);
+
+  const date = new Date(donut.createdAt);
+  const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
   
   return(
     <div>
@@ -20,7 +22,7 @@ export default function DonutDetailPage({ donuts }) {
         <h5>Review:</h5>
         <p>{donut.review}</p>
       </div>
-      <p>Date Added:</p>
+        <p>Date Added: {date.toLocaleDateString(undefined, dateOptions)}</p>
       <div>
         {donut.comments}
       </div>
