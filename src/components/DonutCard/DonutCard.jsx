@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function DonutCard({ donut }) {
   const date = new Date(donut.createdAt);
-  const dateOptions = {weekday: 'long', year: 'numeric', month: 'short', day: 'numeric'};
+  const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
   
   return(
     <Link to={`/donuts/${donut.flavor}`}>
