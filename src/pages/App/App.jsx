@@ -18,6 +18,7 @@ export default function App() {
   const [donuts, setDonuts] = useState([]);
   const [shops, setShops] = useState([]);
   const [comments, setComments] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     async function fillDonutCase() {
@@ -41,14 +42,18 @@ export default function App() {
   }
 
   async function addComment(comment, donut) {
-    console.log(comment);
     const newComment = await donutsAPI.createComment(comment, donut);
     setComments([...comments, newComment]);
   }
-
+  
   async function addShop(shop) {
     const newShop = await shopsAPI.create(shop);
     setShops([...shops, newShop]);
+  }
+  
+  async function addReview(review, shop) {
+    const newReview = await shopsAPI.createReview(review, shop);
+    setReviews([...reviews, newReview]);
   }
 
   return (
@@ -62,7 +67,7 @@ export default function App() {
             <Route path="/donuts/:donutFlavor" element={<DonutDetailPage donuts={donuts} comments={comments} addComment={addComment} />} />
             <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} addDonut={addDonut} />} />
             <Route path="/shops" element={<ShopsListPage shops={shops} />} />
-            <Route path="/shops/:shopName" element={<ShopDetailPage shops={shops} />} />
+            <Route path="/shops/:shopName" element={<ShopDetailPage shops={shops} reveiws={reviews} addReview={addReview} />} />
             <Route path="/shops/new" element={<NewShopPage shops={shops} addShop={addShop} />} />
           </Routes>
         </>
