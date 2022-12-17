@@ -10,5 +10,5 @@ export async function create(shopData) {
 }
 
 export async function createReview(reviewData, shop) {
-  return sendRequest(`${BASE_URL}/${shop._id}/comments`, 'POST', reviewData);
+  return sendRequest(`${BASE_URL}/${shop._id}/reviews`, 'POST', reviewData);
 }
