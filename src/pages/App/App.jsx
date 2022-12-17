@@ -20,11 +20,19 @@ export default function App() {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    async function getDonuts() {
+    async function fillDonutCase() {
       const donuts = await donutsAPI.index();
       setDonuts(donuts);
     }
-    getDonuts();
+    fillDonutCase();
+  }, []);
+
+  useEffect(() => {
+    async function openShops() {
+      const shops = await shopsAPI.index();
+      setShops(shops);
+    }
+    openShops();
   }, []);
   
   async function addDonut(donut) {

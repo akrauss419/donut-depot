@@ -6,7 +6,7 @@ module.exports = {
 };
 
 async function index(req, res) {
-  const shops = await Shop.getAll();
+  const shops = await Shop.find({});
   res.status(200).json(shops);
 }
 
