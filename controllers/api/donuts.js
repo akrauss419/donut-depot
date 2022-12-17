@@ -26,7 +26,6 @@ async function create(req, res) {
 async function createComment(req, res) {
   try {
     req.body.user = req.user._id;
-    console.log(req.body);
     const donut = await Donut.findById(req.params.id);
     donut.comments.push(req.body);
     donut.save();
