@@ -18,7 +18,10 @@ export default function NavBar({ user, setUser }) {
       <Link to="/shops/new">Add a Shop</Link>
       &nbsp;&nbsp;
       <span>Welcome, {user.name}</span>
-      &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
+      &nbsp;&nbsp;
+      <Link to="/profile">My Donut Box</Link>
+      &nbsp; | &nbsp;
+      <Link to="" onClick={handleLogOut}>Log Out</Link>
     </nav>
   );
 }

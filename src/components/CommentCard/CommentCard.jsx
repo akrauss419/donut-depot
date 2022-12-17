@@ -7,7 +7,7 @@ export default function CommentCard({ comment }) {
       <div>
         {comment.content}
       </div>
-      <p>Posted by {comment.user} at {date.toLocaleDateString(undefined, dateOptions)}</p>
+      <p>Posted by {comment.user} on {date.toLocaleDateString(undefined, dateOptions)}</p>
     </div>
   );
 }

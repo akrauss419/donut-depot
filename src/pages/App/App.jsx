@@ -10,6 +10,7 @@ import NewDonutPage from '../NewDonutPage/NewDonutPage';
 import ShopsListPage from '../ShopsListPage/ShopsListPage';
 import ShopDetailPage from '../ShopDetailPage/ShopDetailPage';
 import NewShopPage from '../NewShopPage/NewShopPage';
+import ProfilePage from '../ProfilePage/ProfilePage';
 import NavBar from '../../components/NavBar/NavBar';
 import './App.css';
 
@@ -69,6 +70,7 @@ export default function App() {
             <Route path="/shops" element={<ShopsListPage shops={shops} />} />
             <Route path="/shops/:shopName" element={<ShopDetailPage shops={shops} reveiws={reviews} addReview={addReview} />} />
             <Route path="/shops/new" element={<NewShopPage shops={shops} addShop={addShop} />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Routes>
         </>
         :

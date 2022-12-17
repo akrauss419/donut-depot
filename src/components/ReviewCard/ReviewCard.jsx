@@ -8,7 +8,7 @@ export default function ReviewCard({ review }) {
         {review.content}
       </div>
       <h3>Rating: {review.rating}</h3>
-      <p>Posted by {review.user} at {date.toLocaleDateString(undefined, dateOptions)}</p>
+      <p>Posted by {review.user} on {date.toLocaleDateString(undefined, dateOptions)}</p>
     </div>
   );
 }
