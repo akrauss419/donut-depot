@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-export default function ShopDetailPage({ shops }) {
+export default function ShopDetailPage({ shops, reviews }) {
   const { shopName } = useParams();
   const shop = shops.find((s) => s.name === shopName);
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import * as donutsAPI from '../../utilities/donuts-api';
@@ -17,10 +17,25 @@ export default function App() {
   const [user, setUser] = useState(getUser());
   const [donuts, setDonuts] = useState([]);
   const [shops, setShops] = useState([]);
+  const [comments, setComments] = useState([]);
 
+  useEffect(() => {
+    async function getDonuts() {
+      const donuts = await donutsAPI.index();
+      setDonuts(donuts);
+    }
+    getDonuts();
+  }, []);
+  
   async function addDonut(donut) {
     const newDonut = await donutsAPI.create(donut);
     setDonuts([...donuts, newDonut]);
+  }
+
+  async function addComment(comment, donut) {
+    console.log(comment);
+    const newComment = await donutsAPI.createComment(comment, donut);
+    setComments([...comments, newComment]);
   }
 
   async function addShop(shop) {
@@ -36,10 +51,10 @@ export default function App() {
           <Routes>
             {/* Route components in here */}
             <Route path="/donuts" element={<DonutsListPage donuts={donuts} />} />
-            <Route path="/donuts/:donutFlavor" element={<DonutDetailPage donuts={donuts}/>} />
+            <Route path="/donuts/:donutFlavor" element={<DonutDetailPage donuts={donuts} comments={comments} addComment={addComment} />} />
             <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} addDonut={addDonut} />} />
             <Route path="/shops" element={<ShopsListPage shops={shops} />} />
-            <Route path="/shops/:shopName" element={<ShopDetailPage shops={shops}/>} />
+            <Route path="/shops/:shopName" element={<ShopDetailPage shops={shops} />} />
             <Route path="/shops/new" element={<NewShopPage shops={shops} addShop={addShop} />} />
           </Routes>
         </>

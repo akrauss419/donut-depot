@@ -6,6 +6,10 @@ export async function index() {
 }
 
 export async function create(donutData) {
-  console.log(donutData);
   return sendRequest(`${BASE_URL}/new`, 'POST', donutData);
+}
+
+export async function createComment(commentData, donut) {
+  console.log(commentData);
+  return sendRequest(`${BASE_URL}/${donut._id}/comments`, 'POST', commentData);
 }
