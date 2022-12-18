@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './NewShopPage.css';
 
 export default function NewShopPage({ addShop }) {
   const [newShop, setNewShop] = useState({

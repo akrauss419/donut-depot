@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './ShopCard.css';
 
 export default function ShopCard({ shop }) {
   const date = new Date(shop.createdAt);

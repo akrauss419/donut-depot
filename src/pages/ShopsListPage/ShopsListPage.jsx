@@ -1,4 +1,5 @@
 import ShopCard from '../../components/ShopCard/ShopCard';
+import './ShopsListPage.css';
 
 export default function ShopsListPage({ shops }) {
   return(

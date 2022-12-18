@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CommentCard from '../../components/CommentCard/CommentCard';
+import './DonutDetailPage.css';
 
 export default function DonutDetailPage({ donuts, addComment }) {
   const [newComment, setNewComment] = useState({

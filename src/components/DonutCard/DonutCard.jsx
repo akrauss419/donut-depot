@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './DonutCard.css';
 
 export default function DonutCard({ donut }) {
   const date = new Date(donut.createdAt);

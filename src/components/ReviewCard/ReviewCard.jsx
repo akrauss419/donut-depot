@@ -1,3 +1,5 @@
+import './ReviewCard.css';
+
 export default function ReviewCard({ review }) {
   const date = new Date(review.createdAt);
   const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};

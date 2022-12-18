@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
+import './ShopDetailPage.css';
 
 export default function ShopDetailPage({ shops, addReview }) {
   const [newReview, setNewReview] = useState({

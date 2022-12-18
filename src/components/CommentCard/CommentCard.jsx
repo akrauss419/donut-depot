@@ -1,3 +1,5 @@
+import './CommentCard.css';
+
 export default function CommentCard({ comment }) {
   const date = new Date(comment.createdAt);
   const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};

@@ -1,5 +1,6 @@
 import { checkToken } from '../../utilities/users-service';
 import DonutCard from "../../components/DonutCard/DonutCard";
+import './DonutsListPage.css';
 
 export default function DonutsListPage({ donuts }) {
   async function handleCheckToken() {
