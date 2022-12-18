@@ -70,7 +70,7 @@ export default function App() {
             <Route path="/shops" element={<ShopsListPage shops={shops} />} />
             <Route path="/shops/:shopName" element={<ShopDetailPage shops={shops} reveiws={reviews} addReview={addReview} />} />
             <Route path="/shops/new" element={<NewShopPage shops={shops} addShop={addShop} />} />
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profile" element={<ProfilePage user={user} />} />
           </Routes>
         </>
         :
