@@ -47,7 +47,7 @@ export default function App() {
     const remainingDonuts = donuts.filter(donut => donut._id !== id);
     setDonuts(remainingDonuts);
   }
-
+  
   async function addComment(comment, donut) {
     const newComment = await donutsAPI.createComment(comment, donut);
     setComments([...comments, newComment]);
@@ -58,6 +58,12 @@ export default function App() {
     setShops([...shops, newShop]);
   }
   
+  async function handleDeleteShop(id) {
+    await shopsAPI.deleteShop(id);
+    const remainingShops = shops.filter(shop => shop._id !== id);
+    setShops(remainingShops);
+  }
+
   async function addReview(review, shop) {
     const newReview = await shopsAPI.createReview(review, shop);
     setReviews([...reviews, newReview]);
@@ -73,7 +79,7 @@ export default function App() {
             <Route path="/donuts" element={<DonutsListPage donuts={donuts} handleDeleteDonut={handleDeleteDonut} />} />
             <Route path="/donuts/:donutFlavor" element={<DonutDetailPage donuts={donuts} comments={comments} addComment={addComment} />} />
             <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} addDonut={addDonut} />} />
-            <Route path="/shops" element={<ShopsListPage shops={shops} />} />
+            <Route path="/shops" element={<ShopsListPage shops={shops} handleDeleteShop={handleDeleteShop} />} />
             <Route path="/shops/:shopName" element={<ShopDetailPage shops={shops} reveiws={reviews} addReview={addReview} />} />
             <Route path="/shops/new" element={<NewShopPage shops={shops} addShop={addShop} />} />
             <Route path="/profile" element={<ProfilePage user={user} />} />

@@ -12,7 +12,7 @@ export default function DonutCard({ donut, handleDeleteDonut, user }) {
         <p>Type: {donut.type}</p>
         <p>Available at {donut.shop}</p>
         <p>Added by {donut.user} on {date.toLocaleDateString(undefined, dateOptions)}</p>
-        <button onClick={() => handleDeleteDonut(donut._id)}>Delete</button>
+        <button onClick={() => handleDeleteDonut(donut._id)}>Delete Donut</button>
       </div>
     </Link>
   );

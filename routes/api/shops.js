@@ -5,6 +5,7 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
 router.get('/', shopsCtrl.index);
 router.post('/new', shopsCtrl.create);
+router.delete('/:id', ensureLoggedIn, shopsCtrl.delete);
 
 router.post('/:id/reviews', ensureLoggedIn, shopsCtrl.createReview);
 
