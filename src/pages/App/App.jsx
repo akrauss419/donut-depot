@@ -42,6 +42,12 @@ export default function App() {
     setDonuts([...donuts, newDonut]);
   }
 
+  async function handleDeleteDonut(id) {
+    await donutsAPI.deleteDonut(id);
+    const remainingDonuts = donuts.filter(donut => donut._id !== id);
+    setDonuts(remainingDonuts);
+  }
+
   async function addComment(comment, donut) {
     const newComment = await donutsAPI.createComment(comment, donut);
     setComments([...comments, newComment]);
@@ -64,7 +70,7 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
           <Routes>
             {/* Route components in here */}
-            <Route path="/donuts" element={<DonutsListPage donuts={donuts} />} />
+            <Route path="/donuts" element={<DonutsListPage donuts={donuts} handleDeleteDonut={handleDeleteDonut} />} />
             <Route path="/donuts/:donutFlavor" element={<DonutDetailPage donuts={donuts} comments={comments} addComment={addComment} />} />
             <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} addDonut={addDonut} />} />
             <Route path="/shops" element={<ShopsListPage shops={shops} />} />

@@ -5,6 +5,7 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
 router.get('/', donutsCtrl.index);
 router.post('/new', donutsCtrl.create);
+router.delete('/:id', ensureLoggedIn, donutsCtrl.delete);
 
 router.post('/:id/comments', ensureLoggedIn, donutsCtrl.createComment);
 
