@@ -1,6 +1,6 @@
 import './CommentCard.css';
 
-export default function CommentCard({ comment }) {
+export default function CommentCard({ comment, handleDeleteComment }) {
   const date = new Date(comment.createdAt);
   const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
   
@@ -10,6 +10,7 @@ export default function CommentCard({ comment }) {
         {comment.content}
       </div>
       <p>Posted by {comment.user} on {date.toLocaleDateString(undefined, dateOptions)}</p>
+      <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import CommentCard from '../../components/CommentCard/CommentCard';
 import './DonutDetailPage.css';
 
-export default function DonutDetailPage({ donuts, addComment }) {
+export default function DonutDetailPage({ donuts, addComment, handleDeleteComment }) {
   const [newComment, setNewComment] = useState({
     content: "",
   });
@@ -13,10 +13,6 @@ export default function DonutDetailPage({ donuts, addComment }) {
 
   const date = new Date(donut.createdAt);
   const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
-
-  const donutComments = donut.comments.map((comment, idx) => (
-    <CommentCard comment={comment} key={idx} />
-  ));
   
   function handleAddComment(evt) {
     evt.preventDefault();
@@ -46,7 +42,9 @@ export default function DonutDetailPage({ donuts, addComment }) {
       </div>
       <h2>Comments:</h2>
       <div>
-        {donutComments}
+        {donut.comments.length === 0 ? (<h3>No Comments Yet</h3>) : donut.comments.map((comment, idx) => (
+          <CommentCard comment={comment} key={idx} handleDeleteComment={handleDeleteComment} />
+        ))}
       </div>
       <h4>Comment on This Donut:</h4>
       <div>

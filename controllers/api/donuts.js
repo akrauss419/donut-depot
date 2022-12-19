@@ -4,7 +4,8 @@ module.exports = {
   index,
   create,
   delete: deleteDonut,
-  createComment
+  createComment,
+  deleteComment
 };
 
 async function index(req, res) {
@@ -41,4 +42,12 @@ async function createComment(req, res) {
     console.log(err);
     res.status(400).json(err);
   }
+}
+
+async function deleteComment(req, res) {
+  req.body.user = req.user._id;
+  const donut = await Donut.findById(req.params.id);
+  donut.comments.findByIdAndDelete(req.params.id);
+  donut.save();
+  res.json(donut);
 }

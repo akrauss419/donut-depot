@@ -14,10 +14,6 @@ export default function ShopDetailPage({ shops, addReview }) {
 
   const date = new Date(shop.createdAt);
   const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
-
-  const shopReviews = shop.reviews.map((review, idx) => (
-    <ReviewCard review={review} key={idx} />
-  ));
   
   function handleAddReview(evt) {
     evt.preventDefault();
@@ -37,7 +33,9 @@ export default function ShopDetailPage({ shops, addReview }) {
       </div>
       <h2>Reviews:</h2>
       <div>
-        {shopReviews}
+        {shop.reviews.length === 0 ? (<h3>No Reviews Yet</h3>) : shop.reviews.map((review, idx) => (
+          <ReviewCard review={review} key={idx} />
+        ))}
       </div>
       <h4>Review This Donut Shop:</h4>
       <div>

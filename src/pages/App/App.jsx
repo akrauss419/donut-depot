@@ -27,7 +27,7 @@ export default function App() {
       setDonuts(donuts);
     }
     fillDonutCase();
-  }, []);
+  }, [comments]);
 
   useEffect(() => {
     async function openShops() {
@@ -35,7 +35,7 @@ export default function App() {
       setShops(shops);
     }
     openShops();
-  }, []);
+  }, [reviews]);
   
   async function addDonut(donut) {
     const newDonut = await donutsAPI.create(donut);
@@ -51,6 +51,12 @@ export default function App() {
   async function addComment(comment, donut) {
     const newComment = await donutsAPI.createComment(comment, donut);
     setComments([...comments, newComment]);
+  }
+
+  async function handleDeleteComment(id, donut) {
+    await donutsAPI.deleteComment(id, donut);
+    const remainingComments = donut.comments.filter(comment => comment._id !== id);
+    setComments(remainingComments);
   }
   
   async function addShop(shop) {
@@ -77,7 +83,7 @@ export default function App() {
           <Routes>
             {/* Route components in here */}
             <Route path="/donuts" element={<DonutsListPage donuts={donuts} handleDeleteDonut={handleDeleteDonut} />} />
-            <Route path="/donuts/:donutFlavor" element={<DonutDetailPage donuts={donuts} comments={comments} addComment={addComment} />} />
+            <Route path="/donuts/:donutFlavor" element={<DonutDetailPage donuts={donuts} comments={comments} addComment={addComment} handleDeleteComment={handleDeleteComment} />} />
             <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} addDonut={addDonut} />} />
             <Route path="/shops" element={<ShopsListPage shops={shops} handleDeleteShop={handleDeleteShop} />} />
             <Route path="/shops/:shopName" element={<ShopDetailPage shops={shops} reveiws={reviews} addReview={addReview} />} />
