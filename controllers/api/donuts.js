@@ -45,9 +45,14 @@ async function createComment(req, res) {
 }
 
 async function deleteComment(req, res) {
-  req.body.user = req.user._id;
   const donut = await Donut.findById(req.params.id);
-  donut.comments.findByIdAndDelete(req.params.id);
-  donut.save();
-  res.json(donut);
+  donut.findOne(
+    {'comments._id': req.params.id, 'comments.userId': req.user._id},
+    function(err, donut) {
+      if (!donut || err) return res.redirect(`/donuts/${donut._id}`);
+      donut.comments.remove(req.params.id);
+      donut.save();
+      res.json(donut);
+    }
+  );  
 }

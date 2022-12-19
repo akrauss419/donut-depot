@@ -8,8 +8,8 @@ export default function DonutDetailPage({ donuts, addComment, handleDeleteCommen
     content: "",
   });
   
-  const { donutFlavor } = useParams();
-  const donut = donuts.find((d) => d.flavor === donutFlavor);
+  const { donutId } = useParams();
+  const donut = donuts.find((d) => d._id === donutId);
 
   const date = new Date(donut.createdAt);
   const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};

@@ -1,6 +1,6 @@
 import './ProfilePage.css';
 
-export default function ProfilePage({ user }) {
+export default function ProfilePage({ user, myDonuts }) {
   return(
     <>
       <h1>Profile Page</h1>
@@ -10,6 +10,9 @@ export default function ProfilePage({ user }) {
       </div>
       <div>
         <h2>My Donut Box</h2>
+        <div>
+          
+        </div>
       </div>
     </>
   );

@@ -6,7 +6,7 @@ export default function DonutCard({ donut, handleDeleteDonut, user }) {
   const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
   
   return(
-    <Link to={`/donuts/${donut.flavor}`}>
+    <Link to={`/donuts/${donut._id}`}>
       <div>
         <h1>{donut.flavor}</h1>
         <p>Type: {donut.type}</p>

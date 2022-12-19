@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import * as donutsAPI from '../../utilities/donuts-api';
 import * as shopsAPI from '../../utilities/shops-api';
@@ -20,6 +20,7 @@ export default function App() {
   const [shops, setShops] = useState([]);
   const [comments, setComments] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fillDonutCase() {
@@ -42,6 +43,12 @@ export default function App() {
     setDonuts([...donuts, newDonut]);
   }
 
+  // async function handleUpdateDonut(donutFormData, id) {
+  //   const updatedDonuts = await donutsAPI.updateDonut(id, donutFormData);
+  //   setDonuts(updatedDonuts);
+  //   navigate('/donuts/:donutId');
+  // }
+
   async function handleDeleteDonut(id) {
     await donutsAPI.deleteDonut(id);
     const remainingDonuts = donuts.filter(donut => donut._id !== id);
@@ -53,9 +60,9 @@ export default function App() {
     setComments([...comments, newComment]);
   }
 
-  async function handleDeleteComment(id, donut) {
-    await donutsAPI.deleteComment(id, donut);
-    const remainingComments = donut.comments.filter(comment => comment._id !== id);
+  async function handleDeleteComment(commentId, donut) {
+    await donutsAPI.deleteComment(commentId, donut);
+    const remainingComments = donut.comments.filter(comment => comment._id !== commentId);
     setComments(remainingComments);
   }
   
@@ -75,6 +82,12 @@ export default function App() {
     setReviews([...reviews, newReview]);
   }
 
+  async function myDonuts(id) {
+    await donutsAPI.index(id);
+    const myDonutBox = donuts.filter(donut => donut.user === id);
+    setDonuts(myDonutBox);
+  }
+
   return (
     <main className="App">
       { user ?
@@ -83,12 +96,12 @@ export default function App() {
           <Routes>
             {/* Route components in here */}
             <Route path="/donuts" element={<DonutsListPage donuts={donuts} handleDeleteDonut={handleDeleteDonut} />} />
-            <Route path="/donuts/:donutFlavor" element={<DonutDetailPage donuts={donuts} comments={comments} addComment={addComment} handleDeleteComment={handleDeleteComment} />} />
+            <Route path="/donuts/:donutId" element={<DonutDetailPage donuts={donuts} comments={comments} addComment={addComment} handleDeleteComment={handleDeleteComment} />} />
             <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} addDonut={addDonut} />} />
             <Route path="/shops" element={<ShopsListPage shops={shops} handleDeleteShop={handleDeleteShop} />} />
             <Route path="/shops/:shopName" element={<ShopDetailPage shops={shops} reveiws={reviews} addReview={addReview} />} />
             <Route path="/shops/new" element={<NewShopPage shops={shops} addShop={addShop} />} />
-            <Route path="/profile" element={<ProfilePage user={user} />} />
+            <Route path="/profile" element={<ProfilePage user={user} myDonuts={myDonuts} />} />
           </Routes>
         </>
         :
