@@ -8,7 +8,4 @@ router.post('/new', donutsCtrl.create);
 router.put('/:id/update', ensureLoggedIn, donutsCtrl.updateDonut);
 router.delete('/:id', ensureLoggedIn, donutsCtrl.delete);
 
-router.post('/:id/comments', ensureLoggedIn, donutsCtrl.createComment);
-router.post('/:id/comments/:id', ensureLoggedIn, donutsCtrl.deleteComment);
-
 module.exports = router;

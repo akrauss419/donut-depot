@@ -46,11 +46,11 @@ export default function App() {
     setDonuts([...donuts, newDonut]);
   }
 
-  async function handleUpdateDonut(donutFormData, id) {
-    await donutsAPI.updateDonut(donutFormData, id);
+  async function handleUpdateDonut(donutFormData, donutId) {
+    await donutsAPI.updateDonut(donutFormData, donutId);
     const updatedDonuts = await donutsAPI.index();
     setDonuts(updatedDonuts);
-    navigate('/donuts/:donutId');
+    navigate(`/donuts/${donutId}`);
   }
 
   async function handleDeleteDonut(id) {
@@ -60,7 +60,7 @@ export default function App() {
   }
   
   async function addComment(comment, donut) {
-    const newComment = await donutsAPI.createComment(comment, donut);
+    const newComment = await commentsAPI.createComment(comment, donut);
     setComments([...comments, newComment]);
   }
 

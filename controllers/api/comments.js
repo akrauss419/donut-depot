@@ -7,11 +7,10 @@ module.exports = {
 
 async function createComment(req, res) {
   try {
-    req.body.user = req.user._id;
-    const donut = await Donut.findById(req.params.id);
-    donut.comments.push(req.body);
-    donut.save();
-    res.json(donut);
+    const donut = await Donut.findOne(req.params.id);
+      donut.comments.push(req.body);
+      donut.save();
+      res.json(donut);
   } catch (err) {
     console.log(err);
     res.status(400).json(err);

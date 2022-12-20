@@ -1,8 +1,8 @@
 import sendRequest from "./send-request";
 const BASE_URL = '/api/comments';
 
-export async function createComment(commentData, donutId) {
-  return sendRequest(`/api/donuts/${donutId}/comments`, 'POST', commentData);
+export async function createComment(commentData, donut) {
+  return sendRequest(`/api/donuts/${donut._id}/comments`, 'POST', commentData);
 }
 
 export async function deleteComment(id) {

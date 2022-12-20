@@ -16,11 +16,3 @@ export async function updateDonut(donutFormData, id) {
 export async function deleteDonut(id) {
   return sendRequest(`${BASE_URL}/${id}`, 'DELETE');
 }
-
-export async function createComment(commentData, donut) {
-  return sendRequest(`${BASE_URL}/${donut._id}/comments`, 'POST', commentData);
-}
-
-export async function deleteComment(donutId, commentId) {
-  return sendRequest(`${BASE_URL}/${donutId}/comments/${commentId}`, 'DELETE');
-}
