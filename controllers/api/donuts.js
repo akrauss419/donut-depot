@@ -3,6 +3,7 @@ const Donut = require('../../models/donut');
 module.exports = {
   index,
   create,
+  updateDonut,
   delete: deleteDonut,
   createComment,
   deleteComment
@@ -25,6 +26,12 @@ async function create(req, res) {
   }
 }
 
+async function updateDonut(req, res, next) {
+  await Donut.findByIdAndUpdate({_id: req.params.id}, req.body);
+    const donut = await Donut.find({user: req.user._id});
+    res.json(donut);
+}
+
 async function deleteDonut(req, res) {
   req.body.user = req.user._id;
   const donut = await Donut.findByIdAndDelete(req.params.id);
@@ -45,14 +52,9 @@ async function createComment(req, res) {
 }
 
 async function deleteComment(req, res) {
-  const donut = await Donut.findById(req.params.id);
-  donut.findOne(
-    {'comments._id': req.params.id, 'comments.userId': req.user._id},
-    function(err, donut) {
-      if (!donut || err) return res.redirect(`/donuts/${donut._id}`);
-      donut.comments.remove(req.params.id);
-      donut.save();
-      res.json(donut);
-    }
-  );  
+  const donut = await Donut.findOne({donutId: req.params._id});
+  const commentSubDoc = donut.comments.id(req.params.commentId);
+    donut.comments.remove(commentSubDoc);
+    await donut.save();
+    res.json(donut);
 }

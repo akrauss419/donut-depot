@@ -43,7 +43,7 @@ export default function DonutDetailPage({ donuts, addComment, handleDeleteCommen
       <h2>Comments:</h2>
       <div>
         {donut.comments.length === 0 ? (<h3>No Comments Yet</h3>) : donut.comments.map((comment, idx) => (
-          <CommentCard comment={comment} key={idx} handleDeleteComment={handleDeleteComment} />
+          <CommentCard donuts={donuts} comment={comment} key={idx} handleDeleteComment={handleDeleteComment} />
         ))}
       </div>
       <h4>Comment on This Donut:</h4>

@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useParams, useNavigate } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import * as donutsAPI from '../../utilities/donuts-api';
 import * as shopsAPI from '../../utilities/shops-api';
+import * as commentsAPI from '../../utilities/comments-api';
 import AuthPage from '../AuthPage/AuthPage';
 import DonutsListPage from '../DonutsListPage/DonutsListPage';
 import DonutDetailPage from '../DonutDetailPage/DonutDetailPage';
+import UpdateDonutPage from '../UpdateDonutPage/UpdateDonutPage';
 import NewDonutPage from '../NewDonutPage/NewDonutPage';
 import ShopsListPage from '../ShopsListPage/ShopsListPage';
 import ShopDetailPage from '../ShopDetailPage/ShopDetailPage';
@@ -20,6 +22,7 @@ export default function App() {
   const [shops, setShops] = useState([]);
   const [comments, setComments] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const { donutId } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,11 +46,12 @@ export default function App() {
     setDonuts([...donuts, newDonut]);
   }
 
-  // async function handleUpdateDonut(donutFormData, id) {
-  //   const updatedDonuts = await donutsAPI.updateDonut(id, donutFormData);
-  //   setDonuts(updatedDonuts);
-  //   navigate('/donuts/:donutId');
-  // }
+  async function handleUpdateDonut(donutFormData, id) {
+    await donutsAPI.updateDonut(donutFormData, id);
+    const updatedDonuts = await donutsAPI.index();
+    setDonuts(updatedDonuts);
+    navigate('/donuts/:donutId');
+  }
 
   async function handleDeleteDonut(id) {
     await donutsAPI.deleteDonut(id);
@@ -60,10 +64,10 @@ export default function App() {
     setComments([...comments, newComment]);
   }
 
-  async function handleDeleteComment(commentId, donut) {
-    await donutsAPI.deleteComment(commentId, donut);
-    const remainingComments = donut.comments.filter(comment => comment._id !== commentId);
-    setComments(remainingComments);
+  async function handleDeleteComment(id) {
+    await commentsAPI.deleteComment(id);
+    const activeComments = comments.filter(comment => comment._id !== id);
+    setComments(activeComments);
   }
   
   async function addShop(shop) {
@@ -95,8 +99,9 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
           <Routes>
             {/* Route components in here */}
-            <Route path="/donuts" element={<DonutsListPage donuts={donuts} handleDeleteDonut={handleDeleteDonut} />} />
+            <Route path="/donuts" element={<DonutsListPage donuts={donuts} handleDeleteDonut={handleDeleteDonut} handleUpdateDonut={handleUpdateDonut} />} />
             <Route path="/donuts/:donutId" element={<DonutDetailPage donuts={donuts} comments={comments} addComment={addComment} handleDeleteComment={handleDeleteComment} />} />
+            <Route path="/donuts/:donutId/update" element={<UpdateDonutPage donuts={donuts} handleUpdateDonut={handleUpdateDonut}/>} />
             <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} addDonut={addDonut} />} />
             <Route path="/shops" element={<ShopsListPage shops={shops} handleDeleteShop={handleDeleteShop} />} />
             <Route path="/shops/:shopName" element={<ShopDetailPage shops={shops} reveiws={reviews} addReview={addReview} />} />
