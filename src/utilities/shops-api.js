@@ -12,7 +12,3 @@ export async function create(shopData) {
 export async function deleteShop(id) {
   return sendRequest(`${BASE_URL}/${id}`, 'DELETE');
 }
-
-export async function createReview(reviewData, shop) {
-  return sendRequest(`${BASE_URL}/${shop._id}/reviews`, 'POST', reviewData);
-}

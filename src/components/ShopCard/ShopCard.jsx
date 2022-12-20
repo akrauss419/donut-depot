@@ -6,7 +6,7 @@ export default function ShopCard({ shop, handleDeleteShop }) {
   const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
   
   return(
-    <Link to={`/shops/${shop.name}`}>
+    <Link to={`/shops/${shop._id}`}>
       <div>
         <h1>{shop.name}</h1>
         <p>Location: {shop.location}</p>

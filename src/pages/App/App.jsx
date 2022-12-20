@@ -4,6 +4,7 @@ import { getUser } from '../../utilities/users-service';
 import * as donutsAPI from '../../utilities/donuts-api';
 import * as shopsAPI from '../../utilities/shops-api';
 import * as commentsAPI from '../../utilities/comments-api';
+import * as reviewsAPI from '../../utilities/reviews-api';
 import AuthPage from '../AuthPage/AuthPage';
 import DonutsListPage from '../DonutsListPage/DonutsListPage';
 import DonutDetailPage from '../DonutDetailPage/DonutDetailPage';
@@ -23,6 +24,7 @@ export default function App() {
   const [comments, setComments] = useState([]);
   const [reviews, setReviews] = useState([]);
   const { donutId } = useParams();
+  const { shopId } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -82,7 +84,7 @@ export default function App() {
   }
 
   async function addReview(review, shop) {
-    const newReview = await shopsAPI.createReview(review, shop);
+    const newReview = await reviewsAPI.createReview(review, shop);
     setReviews([...reviews, newReview]);
   }
 
@@ -104,7 +106,7 @@ export default function App() {
             <Route path="/donuts/:donutId/update" element={<UpdateDonutPage donuts={donuts} handleUpdateDonut={handleUpdateDonut}/>} />
             <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} addDonut={addDonut} />} />
             <Route path="/shops" element={<ShopsListPage shops={shops} handleDeleteShop={handleDeleteShop} />} />
-            <Route path="/shops/:shopName" element={<ShopDetailPage shops={shops} reveiws={reviews} addReview={addReview} />} />
+            <Route path="/shops/:shopId" element={<ShopDetailPage shops={shops} reveiws={reviews} addReview={addReview} />} />
             <Route path="/shops/new" element={<NewShopPage shops={shops} addShop={addShop} />} />
             <Route path="/profile" element={<ProfilePage user={user} myDonuts={myDonuts} />} />
           </Routes>

@@ -9,8 +9,8 @@ export default function ShopDetailPage({ shops, addReview }) {
     rating: 3
   });
   
-  const { shopName } = useParams();
-  const shop = shops.find((s) => s.name === shopName);
+  const { shopId } = useParams();
+  const shop = shops.find((s) => s._id === shopId);
 
   const date = new Date(shop.createdAt);
   const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
