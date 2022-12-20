@@ -9,6 +9,10 @@ export async function create(shopData) {
   return sendRequest(`${BASE_URL}/new`, 'POST', shopData);
 }
 
+export async function updateShop(shopFormData, id) {
+  return sendRequest(`${BASE_URL}/${id}/update`, 'PUT', shopFormData);
+}
+
 export async function deleteShop(id) {
   return sendRequest(`${BASE_URL}/${id}`, 'DELETE');
 }

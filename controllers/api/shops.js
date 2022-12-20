@@ -3,6 +3,7 @@ const Shop = require('../../models/shop');
 module.exports = {
   index,
   create,
+  updateShop,
   delete: deleteShop
 };
 
@@ -20,6 +21,12 @@ async function create(req, res) {
   } catch (err) {
     res.status(400).json(err);
   }
+}
+
+async function updateShop(req, res, next) {
+  await Shop.findByIdAndUpdate({_id: req.params.id}, req.body);
+    const shop = await Shop.find({user: req.user._id});
+    res.json(shop);
 }
 
 async function deleteShop(req, res) {

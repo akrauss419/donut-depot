@@ -16,4 +16,31 @@ export default function UpdateShopPage({ shops, handleUpdateShop }) {
     evt.preventDefault();
     handleUpdateShop(shopFormData, shopId);
   }
+
+  return(
+    <>
+      <h1>Update Shop Post</h1>
+      <form onSubmit={handleSubmitEdits}>
+        <label htmlFor="input">Shop Name:</label>
+        <input
+          name="name"
+          type="text"
+          value={shopFormData.name}
+          onChange={handleChange}
+          placeholder="Name"
+        />
+
+        <label htmlFor="input">Location:</label>
+        <input
+          name="location"
+          type="text"
+          value={shopFormData.location}
+          onChange={handleChange}
+          placeholder="Street, City, State, Zip"
+        />
+
+        <button type="submit">Submit Edits</button>
+      </form>
+    </>
+  );
 }

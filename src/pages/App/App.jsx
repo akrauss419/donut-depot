@@ -12,6 +12,7 @@ import UpdateDonutPage from '../UpdateDonutPage/UpdateDonutPage';
 import NewDonutPage from '../NewDonutPage/NewDonutPage';
 import ShopsListPage from '../ShopsListPage/ShopsListPage';
 import ShopDetailPage from '../ShopDetailPage/ShopDetailPage';
+import UpdateShopPage from '../UpdateShopPage/UpdateShopPage';
 import NewShopPage from '../NewShopPage/NewShopPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import NavBar from '../../components/NavBar/NavBar';
@@ -76,6 +77,13 @@ export default function App() {
     const newShop = await shopsAPI.create(shop);
     setShops([...shops, newShop]);
   }
+
+  async function handleUpdateShop(shopFormData, shopId) {
+    await shopsAPI.updateShop(shopFormData, shopId);
+    const updatedShops = await shopsAPI.index();
+    setShops(updatedShops);
+    navigate(`/shops/${shopId}`);
+  }
   
   async function handleDeleteShop(id) {
     await shopsAPI.deleteShop(id);
@@ -107,12 +115,13 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
           <Routes>
             {/* Route components in here */}
-            <Route path="/donuts" element={<DonutsListPage donuts={donuts} handleDeleteDonut={handleDeleteDonut} handleUpdateDonut={handleUpdateDonut} />} />
+            <Route path="/donuts" element={<DonutsListPage donuts={donuts} handleUpdateDonut={handleUpdateDonut} handleDeleteDonut={handleDeleteDonut} />} />
             <Route path="/donuts/:donutId" element={<DonutDetailPage donuts={donuts} comments={comments} addComment={addComment} handleDeleteComment={handleDeleteComment} />} />
             <Route path="/donuts/:donutId/update" element={<UpdateDonutPage donuts={donuts} handleUpdateDonut={handleUpdateDonut}/>} />
             <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} addDonut={addDonut} />} />
-            <Route path="/shops" element={<ShopsListPage shops={shops} handleDeleteShop={handleDeleteShop} />} />
+            <Route path="/shops" element={<ShopsListPage shops={shops} handleUpdateShop={handleUpdateShop} handleDeleteShop={handleDeleteShop} />} />
             <Route path="/shops/:shopId" element={<ShopDetailPage shops={shops} reveiws={reviews} addReview={addReview} handleDeleteReview={handleDeleteReview} />} />
+            <Route path="/shops/:shopId/update" element={<UpdateShopPage shops={shops} handleUpdateShop={handleUpdateShop} />} />
             <Route path="/shops/new" element={<NewShopPage shops={shops} addShop={addShop} />} />
             <Route path="/profile" element={<ProfilePage user={user} myDonuts={myDonuts} />} />
           </Routes>
