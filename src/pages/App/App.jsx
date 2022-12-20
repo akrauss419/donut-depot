@@ -7,13 +7,14 @@ import * as commentsAPI from '../../utilities/comments-api';
 import * as reviewsAPI from '../../utilities/reviews-api';
 import AuthPage from '../AuthPage/AuthPage';
 import DonutsListPage from '../DonutsListPage/DonutsListPage';
+import NewDonutPage from '../NewDonutPage/NewDonutPage';
 import DonutDetailPage from '../DonutDetailPage/DonutDetailPage';
 import UpdateDonutPage from '../UpdateDonutPage/UpdateDonutPage';
-import NewDonutPage from '../NewDonutPage/NewDonutPage';
+import UpdateCommentPage from '../UpdateCommentPage/UpdateCommentPage';
 import ShopsListPage from '../ShopsListPage/ShopsListPage';
+import NewShopPage from '../NewShopPage/NewShopPage';
 import ShopDetailPage from '../ShopDetailPage/ShopDetailPage';
 import UpdateShopPage from '../UpdateShopPage/UpdateShopPage';
-import NewShopPage from '../NewShopPage/NewShopPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import NavBar from '../../components/NavBar/NavBar';
 import './App.css';
@@ -43,7 +44,7 @@ export default function App() {
     }
     openShops();
   }, [reviews]);
-  
+
   async function addDonut(donut) {
     const newDonut = await donutsAPI.create(donut);
     setDonuts([...donuts, newDonut]);
@@ -61,10 +62,17 @@ export default function App() {
     const remainingDonuts = donuts.filter(donut => donut._id !== id);
     setDonuts(remainingDonuts);
   }
-  
+
   async function addComment(comment, donut) {
     const newComment = await commentsAPI.createComment(comment, donut);
     setComments([...comments, newComment]);
+  }
+
+  async function handleUpdateComment(commentFormData, id) {
+    await commentsAPI.updateComment(commentFormData, id);
+    const updatedComments = await commentsAPI.index();
+    setComments(updatedComments);
+    navigate(`/donuts/${donutId}`);
   }
 
   async function handleDeleteComment(id) {
@@ -72,7 +80,7 @@ export default function App() {
     const activeComments = comments.filter(comment => comment._id !== id);
     setComments(activeComments);
   }
-  
+
   async function addShop(shop) {
     const newShop = await shopsAPI.create(shop);
     setShops([...shops, newShop]);
@@ -84,7 +92,7 @@ export default function App() {
     setShops(updatedShops);
     navigate(`/shops/${shopId}`);
   }
-  
+
   async function handleDeleteShop(id) {
     await shopsAPI.deleteShop(id);
     const remainingShops = shops.filter(shop => shop._id !== id);
@@ -110,19 +118,20 @@ export default function App() {
 
   return (
     <main className="App">
-      { user ?
+      {user ?
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
             {/* Route components in here */}
             <Route path="/donuts" element={<DonutsListPage donuts={donuts} handleUpdateDonut={handleUpdateDonut} handleDeleteDonut={handleDeleteDonut} />} />
-            <Route path="/donuts/:donutId" element={<DonutDetailPage donuts={donuts} comments={comments} addComment={addComment} handleDeleteComment={handleDeleteComment} />} />
-            <Route path="/donuts/:donutId/update" element={<UpdateDonutPage donuts={donuts} handleUpdateDonut={handleUpdateDonut}/>} />
             <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} addDonut={addDonut} />} />
+            <Route path="/donuts/:donutId" element={<DonutDetailPage donuts={donuts} comments={comments} addComment={addComment} handleDeleteComment={handleDeleteComment} />} />
+            <Route path="/donuts/:donutId/update" element={<UpdateDonutPage donuts={donuts} handleUpdateDonut={handleUpdateDonut} />} />
+            <Route path="/comments/:id/update" element={<UpdateCommentPage donuts={donuts} comments={comments} handleUpdateComment={handleUpdateComment} />} />
             <Route path="/shops" element={<ShopsListPage shops={shops} handleUpdateShop={handleUpdateShop} handleDeleteShop={handleDeleteShop} />} />
+            <Route path="/shops/new" element={<NewShopPage shops={shops} addShop={addShop} />} />
             <Route path="/shops/:shopId" element={<ShopDetailPage shops={shops} reveiws={reviews} addReview={addReview} handleDeleteReview={handleDeleteReview} />} />
             <Route path="/shops/:shopId/update" element={<UpdateShopPage shops={shops} handleUpdateShop={handleUpdateShop} />} />
-            <Route path="/shops/new" element={<NewShopPage shops={shops} addShop={addShop} />} />
             <Route path="/profile" element={<ProfilePage user={user} myDonuts={myDonuts} />} />
           </Routes>
         </>

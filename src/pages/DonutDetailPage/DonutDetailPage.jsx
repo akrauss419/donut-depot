@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import CommentCard from '../../components/CommentCard/CommentCard';
 import './DonutDetailPage.css';
 
-export default function DonutDetailPage({ donuts, addComment, handleDeleteComment }) {
+export default function DonutDetailPage({ donuts, addComment, handleUpdateComment, handleDeleteComment }) {
   const [newComment, setNewComment] = useState({
     content: "",
   });
@@ -43,7 +43,7 @@ export default function DonutDetailPage({ donuts, addComment, handleDeleteCommen
       <h2>Comments:</h2>
       <div>
         {donut.comments.length === 0 ? (<h3>No Comments Yet</h3>) : donut.comments.map((comment, idx) => (
-          <CommentCard donuts={donuts} comment={comment} key={idx} handleDeleteComment={handleDeleteComment} />
+          <CommentCard donuts={donuts} comment={comment} key={idx} handleUpdateComment={handleUpdateComment} handleDeleteComment={handleDeleteComment} />
         ))}
       </div>
       <h4>Comment on This Donut:</h4>
