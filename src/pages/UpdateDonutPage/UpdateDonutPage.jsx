@@ -8,7 +8,7 @@ export default function UpdateDonutPage({ donuts, handleUpdateDonut }) {
   if (!changedDonut) return null;
 
   function handleChange(evt) {
-    const updateDonut = {...changedDonut, [evt.target.name]: evt.target.value};
+    const updateDonut = {...donutFormData, [evt.target.name]: evt.target.value};
     setDonutFormData(updateDonut);
   }
 

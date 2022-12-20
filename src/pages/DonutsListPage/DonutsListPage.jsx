@@ -12,9 +12,9 @@ export default function DonutsListPage({ donuts, handleUpdateDonut, handleDelete
     <>
       <h1>Donuts List</h1>
       <div>
-        {donuts.length ? donuts.map((d, idx) => {
-          return <DonutCard donut={d} key={idx} handleUpdateDonut={handleUpdateDonut} handleDeleteDonut={handleDeleteDonut} />
-        }) : (<h2>No Donuts Yet</h2>)}
+        {donuts.map((d, idx) => {
+          return <DonutCard donut={d} key={idx} handleUpdateDonut={handleUpdateDonut} handleDeleteDonut={handleDeleteDonut} />;
+        })}
       </div>
       <button onClick={handleCheckToken}>Check When My Login Expires</button>
     </>
