@@ -1,6 +1,6 @@
 import './ReviewCard.css';
 
-export default function ReviewCard({ review }) {
+export default function ReviewCard({ review, handleDeleteReview }) {
   const date = new Date(review.createdAt);
   const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
   
@@ -11,6 +11,7 @@ export default function ReviewCard({ review }) {
       </div>
       <h3>Rating: {review.rating}</h3>
       <p>Posted by {review.user} on {date.toLocaleDateString(undefined, dateOptions)}</p>
+      <button onClick={() => handleDeleteReview(review._id)}>Delete</button>
     </div>
   );
 }

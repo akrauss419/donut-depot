@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
 import './ShopDetailPage.css';
 
-export default function ShopDetailPage({ shops, addReview }) {
+export default function ShopDetailPage({ shops, addReview, handleDeleteReview }) {
   const [newReview, setNewReview] = useState({
     content: "",
     rating: 3
@@ -34,7 +34,7 @@ export default function ShopDetailPage({ shops, addReview }) {
       <h2>Reviews:</h2>
       <div>
         {shop.reviews.length === 0 ? (<h3>No Reviews Yet</h3>) : shop.reviews.map((review, idx) => (
-          <ReviewCard review={review} key={idx} />
+          <ReviewCard review={review} key={idx} handleDeleteReview={handleDeleteReview} />
         ))}
       </div>
       <h4>Review This Donut Shop:</h4>
