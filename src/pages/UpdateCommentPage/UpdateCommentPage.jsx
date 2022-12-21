@@ -1,16 +1,15 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 
-export default function UpdateCommentPage({ comments, handleUpdateComment }) {
-  const { id } = useParams();
-  const changedComment = comments.find((c) => c._id === id);
-  const [commentFormData, setCommentFormData] = useState(changedComment);
-  if (!changedComment) return null;
+export default function UpdateCommentPage({ comment, handleUpdateComment, showEditCommentForm, setShowEditCommentForm }) {
+  const [commentFormData, setCommentFormData] = useState({content: comment.content});
 
   function handleSubmitEdits(evt) {
     evt.preventDefault();
-    handleUpdateComment(commentFormData, id);
+    setShowEditCommentForm(!showEditCommentForm);
+    console.log(commentFormData, comment._id);
+    handleUpdateComment(commentFormData, comment._id);
   }
+
   return(
     <>
       <h2>Edit Comment:</h2>

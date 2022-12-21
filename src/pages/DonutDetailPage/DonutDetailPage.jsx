@@ -1,49 +1,85 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import * as commentsAPI from '../../utilities/comments-api';
 import CommentCard from '../../components/CommentCard/CommentCard';
 import './DonutDetailPage.css';
 
-export default function DonutDetailPage({ donuts, addComment, handleUpdateComment, handleDeleteComment }) {
+export default function DonutDetailPage({ donuts, setDonuts, user }) {
+  const [donutDetail, setDonutDetail] = useState(null);
   const [newComment, setNewComment] = useState({
     content: "",
   });
   
   const { donutId } = useParams();
-  const donut = donuts.find((d) => d._id === donutId);
+  
+  useEffect(() => {
+    function getDonut() {
+      const donut = donuts.find((d) => d._id === donutId);
+      setDonutDetail(donut);
+    }
+    getDonut();
+  }, [donutDetail])
+  
+  if (!donutDetail) return null;
 
-  const date = new Date(donut.createdAt);
   const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
+
+  async function addComment(comment, donut) {
+    const allDonuts = await commentsAPI.createComment(comment, donut);
+    setDonuts(allDonuts);
+    const detail = allDonuts.find((d) => d._id === donutId);
+    setDonutDetail(detail);
+  }
+
+  async function handleUpdateComment(commentFormData, id) {
+    const allDonuts = await commentsAPI.updateComment(commentFormData, id);
+    setDonuts(allDonuts);
+    const detail = allDonuts.find((d) => d._id === donutId);
+    setDonutDetail(detail);
+  }
+
+  async function handleDeleteComment(id) {
+    const allDonuts = await commentsAPI.deleteComment(id);
+    setDonuts(allDonuts);
+    const detail = allDonuts.find((d) => d._id === donutId);
+    setDonutDetail(detail);
+  }
   
   function handleAddComment(evt) {
     evt.preventDefault();
-    addComment(newComment, donut);
+    addComment(newComment, donutDetail);
     setNewComment({
       content: ""
     });
+  }
+
+  function getDate(item) {
+    const date = new Date(item);
+    return date.toDateString();
   }
   
   return(
     <>
       <div>
-        <h1>{donut.flavor}</h1>
-        <p>Type: {donut.type}</p>
-        <p>Sprinkles: {donut.sprinkles}</p>
+        <h1>{donutDetail.flavor}</h1>
+        <p>Type: {donutDetail.type}</p>
+        <p>Sprinkles: {donutDetail.sprinkles}</p>
         <div>
           <h6>Other Qualities:</h6>
-          {donut.unique}
+          {donutDetail.unique}
         </div>
-        <p>Home: {donut.shop}</p>
-        <h4>Rating: {donut.rating}</h4>
+        <p>Home: {donutDetail.shop}</p>
+        <h4>Rating: {donutDetail.rating}</h4>
         <div>
           <h5>Review:</h5>
-          <p>{donut.review}</p>
+          <p>{donutDetail.review}</p>
         </div>
-        <p>Date Added: {date.toLocaleDateString(undefined, dateOptions)}</p>
+        <p>Date Added: {getDate(donutDetail.createdAt)}</p>
       </div>
       <h2>Comments:</h2>
       <div>
-        {donut.comments.length === 0 ? (<h3>No Comments Yet</h3>) : donut.comments.map((comment, idx) => (
-          <CommentCard donuts={donuts} comment={comment} key={idx} handleUpdateComment={handleUpdateComment} handleDeleteComment={handleDeleteComment} />
+        {donutDetail.comments.length === 0 ? (<h3>No Comments Yet</h3>) : donutDetail.comments.map((comment) => (
+          <CommentCard donutDetail={donutDetail} comment={comment} key={comment._id} handleUpdateComment={handleUpdateComment} handleDeleteComment={handleDeleteComment} user={user} />
         ))}
       </div>
       <h4>Comment on This Donut:</h4>

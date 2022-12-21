@@ -6,11 +6,11 @@ export async function index(donut) {
 }
 
 export async function createComment(commentData, donut) {
-  return sendRequest(`/api/donuts/${donut._id}/comments`, 'POST', commentData);
+  return sendRequest(`${BASE_URL}/${donut._id}/new`, 'POST', commentData);
 }
 
 export async function updateComment(commentFormData, id) {
-  return sendRequest(`${BASE_URL}/${id}/update`, 'PUT', commentFormData);
+  return sendRequest(`${BASE_URL}/${id}`, 'PUT', commentFormData);
 }
 
 export async function deleteComment(id) {

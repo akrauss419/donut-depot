@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './DonutCard.css';
 
-export default function DonutCard({ donut, handleDeleteDonut, user }) {
+export default function DonutCard({ donut, comments, handleDeleteDonut, user }) {
   const navigate = useNavigate();
   const date = new Date(donut.createdAt);
   const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};

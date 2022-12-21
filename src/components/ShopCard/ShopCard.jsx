@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './ShopCard.css';
 
-export default function ShopCard({ shop, handleDeleteShop }) {
+export default function ShopCard({ shop, reviews, handleDeleteShop }) {
   const navigate = useNavigate();
   const date = new Date(shop.createdAt);
   const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};

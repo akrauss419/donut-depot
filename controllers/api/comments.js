@@ -14,10 +14,12 @@ async function index(req, res) {
 
 async function createComment(req, res) {
   try {
-    const donut = await Donut.findOne(req.params.id);
+    const donut = await Donut.findById(req.params.id);
+      req.body.user = req.user._id;
       donut.comments.push(req.body);
-      donut.save();
-      res.json(donut);
+      await donut.save();
+      const donuts = await Donut.find({})
+      res.json(donuts);
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
@@ -25,15 +27,22 @@ async function createComment(req, res) {
 }
 
 async function updateComment(req, res, next) {
-  const donut = await Donut.findOne({'comments._id': req.params.id}, req.body);
-    const comment = donut.comments.id(req.params.id);
-    await comment.save();
-    res.json(comment);
+  try {
+    const donut = await Donut.findOne({'comments._id': req.params.id});
+      const comment = donut.comments.id(req.params.id);
+      comment.content = req.body.content;
+      await donut.save();
+      const donuts = await Donut.find({});
+      res.json(donuts);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 async function deleteComment(req, res) {
   const donut = await Donut.findOne({'comments._id': req.params.id});
     donut.comments.remove(req.params.id);
     await donut.save();
-    res.json(donut);
+    const donuts = await Donut.find({});
+    res.json(donuts);
 }

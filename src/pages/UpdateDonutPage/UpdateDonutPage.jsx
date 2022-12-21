@@ -1,11 +1,20 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import * as donutsAPI from '../../utilities/donuts-api';
 
-export default function UpdateDonutPage({ donuts, handleUpdateDonut }) {
+export default function UpdateDonutPage({ donuts, setDonuts }) {
+  const navigate = useNavigate();
   const { donutId } = useParams();
   const changedDonut = donuts.find((d) => d._id === donutId);
   const [donutFormData, setDonutFormData] = useState(changedDonut);
   if (!changedDonut) return null;
+
+  async function handleUpdateDonut(donutFormData, donutId) {
+    await donutsAPI.updateDonut(donutFormData, donutId);
+    const updatedDonuts = await donutsAPI.index();
+    setDonuts(updatedDonuts);
+    navigate(`/donuts/${donutId}`);
+  }
 
   function handleChange(evt) {
     const updateDonut = {...donutFormData, [evt.target.name]: evt.target.value};

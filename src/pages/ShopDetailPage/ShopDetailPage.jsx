@@ -1,23 +1,44 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import * as reviewsAPI from '../../utilities/reviews-api';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
 import './ShopDetailPage.css';
 
-export default function ShopDetailPage({ shops, addReview, handleDeleteReview }) {
+export default function ShopDetailPage({ shops, setShops}) {
+  const [shopDetail, setShopDetail] = useState(null);
   const [newReview, setNewReview] = useState({
     content: "",
     rating: 3
   });
   
-  const { shopId } = useParams();
-  const shop = shops.find((s) => s._id === shopId);
+  const navigate = useNavigate();
 
-  const date = new Date(shop.createdAt);
+  const { shopId } = useParams();
+
+  useEffect(() => {
+    function setTable() {
+      const shop = shops.find((s) => s._id === shopId);
+      setShopDetail(shop);
+    }
+    setTable();
+  }, [shopId])
+
+  const date = new Date(shopDetail.createdAt);
   const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
   
+  async function addReview(review, shop) {
+    const allShops = await reviewsAPI.createReview(review, shop);
+    setShops(allShops);
+  }
+
+  async function handleDeleteReview(id) {
+    const allShops = await reviewsAPI.deleteReview(id)
+    setShops(allShops);
+  }
+
   function handleAddReview(evt) {
     evt.preventDefault();
-    addReview(newReview, shop);
+    addReview(newReview, shopDetail);
     setNewReview({
       content: "",
       rating: 3
@@ -26,14 +47,14 @@ export default function ShopDetailPage({ shops, addReview, handleDeleteReview })
   
   return(
     <>
-      <h1>{shop.name} Details</h1>
+      <h1>{shopDetail.name} Details</h1>
       <div>
-        <h4>{shop.location}</h4>
+        <h4>{shopDetail.location}</h4>
         <h6>Date Added: {date.toLocaleDateString(undefined, dateOptions)}</h6>
       </div>
       <h2>Reviews:</h2>
       <div>
-        {shop.reviews.length === 0 ? (<h3>No Reviews Yet</h3>) : shop.reviews.map((review, idx) => (
+        {shopDetail.reviews.length === 0 ? (<h3>No Reviews Yet</h3>) : shopDetail.reviews.map((review, idx) => (
           <ReviewCard review={review} key={idx} handleDeleteReview={handleDeleteReview} />
         ))}
       </div>

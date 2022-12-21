@@ -16,8 +16,9 @@ async function create(req, res) {
   try {
     req.body.user = req.user._id;
     const donut = await Donut.create(req.body);
-    donut.save();
-    res.json(donut);
+    await donut.save();
+    const allDonuts = Donut.find({});
+    res.json(allDonuts);
   } catch (err) {
     console.log(err);
     res.status(400).json(err);

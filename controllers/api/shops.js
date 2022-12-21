@@ -16,8 +16,9 @@ async function create(req, res) {
   try {
     req.body.user = req.user._id;
     const shop = await Shop.create(req.body);
-    shop.save();
-    res.json(shop);
+    await shop.save();
+    allShops = await Shop.find({});
+    res.json(allShops);
   } catch (err) {
     res.status(400).json(err);
   }
