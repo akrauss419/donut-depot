@@ -11,35 +11,36 @@ export default function ReviewCard({ review, handleUpdateReview, handleDeleteRev
   }
   
   return(
-    <div>{user._id === review.user ?
-      <>
-        {showEditReviewForm ?
-          <>
-            <UpdateReviewPage review={review} handleUpdateReview={handleUpdateReview} showEditReviewForm={showEditReviewForm} setShowEditReviewForm={setShowEditReviewForm} />
-            <button onClick={() => setShowEditReviewForm(!showEditReviewForm)}>Cancel</button>
-            <button onClick={() => handleDeleteReview(review._id)}>Delete</button>
-          </>
+    <div>
+      {user._id === review.user ?
+        <>
+          {showEditReviewForm ?
+            <>
+              <UpdateReviewPage review={review} handleUpdateReview={handleUpdateReview} showEditReviewForm={showEditReviewForm} setShowEditReviewForm={setShowEditReviewForm} />
+              <button onClick={() => setShowEditReviewForm(!showEditReviewForm)}>Cancel</button>
+              <button onClick={() => handleDeleteReview(review._id)}>Delete</button>
+            </>
+          :
+            <>
+              <div>
+                {review.content}
+              </div>
+              <h3>Rating: {review.rating}</h3>
+              <p>Posted by {user.name} on {getDate(review.createdAt)}</p>
+              <button onClick={() => setShowEditReviewForm(!showEditReviewForm)}>Edit</button>
+              <button onClick={() => handleDeleteReview(review._id)}>Delete</button>
+            </>
+          }
+        </>
         :
-          <>
-            <div>
-              {review.content}
-            </div>
-            <h3>Rating: {review.rating}</h3>
-            <p>Posted by {user.name} on {getDate(review.createdAt)}</p>
-            <button onClick={() => setShowEditReviewForm(!showEditReviewForm)}>Edit</button>
-            <button onClick={() => handleDeleteReview(review._id)}>Delete</button>
-          </>
-        }
-      </>
-      :
-      <>
-        <div>
-          {review.content}
-        </div>
-        <h3>Rating: {review.rating}</h3>
-        <p>Posted by {review.user} on {getDate(review.createdAt)}</p>
-      </>
-    }
+        <>
+          <div>
+            {review.content}
+          </div>
+          <h3>Rating: {review.rating}</h3>
+          <p>Posted by {review.user} on {getDate(review.createdAt)}</p>
+        </>
+      }
     </div>
   );
 }
