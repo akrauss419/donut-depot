@@ -63,8 +63,14 @@ export default function DonutDetailPage({ donuts, setDonuts, user }) {
         <p>Type: {donutDetail.type}</p>
         <p>Sprinkles: {donutDetail.sprinkles}</p>
         <div>
-          <h6>Other Qualities:</h6>
-          {donutDetail.unique}
+          {donutDetail.unique.length === 0 ? 
+            null
+          : 
+            <div>
+              <h6>Other Qualities:</h6>
+              <div>{donutDetail.unique}</div>
+            </div>
+          }
         </div>
         <p>Home: {donutDetail.shop}</p>
         <h4>Rating: {donutDetail.rating}</h4>
