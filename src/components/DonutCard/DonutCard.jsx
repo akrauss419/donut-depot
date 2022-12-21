@@ -27,7 +27,7 @@ export default function DonutCard({ donut, handleDeleteDonut, user }) {
           <h1>{donut.flavor}</h1>
           <p>Type: {donut.type}</p>
           <p>Available at {donut.shop}</p>
-          <p>Added by {user.name} on {getDate(donut.createdAt)}</p>
+          <p>Added by {donut.user} on {getDate(donut.createdAt)}</p>
         </div>
       </Link>
         <div>

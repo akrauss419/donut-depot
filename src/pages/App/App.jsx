@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import * as donutsAPI from '../../utilities/donuts-api';
 import * as shopsAPI from '../../utilities/shops-api';
@@ -23,6 +23,8 @@ export default function App() {
   const [donuts, setDonuts] = useState([]);
   const [shops, setShops] = useState([]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     async function fillDonutCase() {
       const donuts = await donutsAPI.index();
@@ -42,11 +44,13 @@ export default function App() {
   async function addDonut(donut) {
     const allDonuts = await donutsAPI.create(donut);
     setDonuts(allDonuts);
+    navigate(`donuts/${donut._id}`)
   }
 
   async function addShop(shop) {
     const allShops = await shopsAPI.create(shop);
     setShops(allShops);
+    navigate(`shops/${shop._id}`)
   }
 
   async function myDonuts(id) {
