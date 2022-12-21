@@ -6,7 +6,6 @@ export default function UpdateCommentPage({ comment, handleUpdateComment, showEd
   function handleSubmitEdits(evt) {
     evt.preventDefault();
     setShowEditCommentForm(!showEditCommentForm);
-    console.log(commentFormData, comment._id);
     handleUpdateComment(commentFormData, comment._id);
   }
 

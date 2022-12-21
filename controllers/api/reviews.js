@@ -7,10 +7,12 @@ module.exports = {
 
 async function createReview(req, res) {
   try {
-    const shop = await Shop.findOne(req.params.id);
+    const shop = await Shop.findById(req.params.id);
+      req.body.user = req.user._id;
       shop.reviews.push(req.body);
-      shop.save();
-      res.json(shop);
+      await shop.save();
+      const shops = await Shop.find({});
+      res.json(shops);
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
@@ -21,5 +23,6 @@ async function deleteReview(req, res) {
   const shop = await Shop.findOne({'reviews._id': req.params.id});
     shop.reviews.remove(req.params.id);
     await shop.save();
-    res.json(shop);
+    const shops = await Shop.find({});
+    res.json(shops);
 }
