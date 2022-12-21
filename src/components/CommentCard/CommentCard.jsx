@@ -24,7 +24,7 @@ export default function CommentCard({ comment, handleUpdateComment, handleDelete
             <div>
               {comment.content}
             </div>
-            <p>Posted by {comment.user} on {getDate(comment.createdAt)}</p>
+            <p>Posted by {user.name} on {getDate(comment.createdAt)}</p>
             <button onClick={() => setShowEditCommentForm(!showEditCommentForm)}>Edit</button>
             <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
           </>

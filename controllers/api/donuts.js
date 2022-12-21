@@ -26,6 +26,7 @@ async function create(req, res) {
 }
 
 async function updateDonut(req, res, next) {
+  req.body.user = req.user._id;
   await Donut.findByIdAndUpdate({_id: req.params.id}, req.body);
     const donut = await Donut.find({user: req.user._id});
     res.json(donut);

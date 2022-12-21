@@ -30,6 +30,7 @@ app.use('/api/donuts', ensureLoggedIn, require('./routes/api/donuts'));
 app.use('/api/shops', ensureLoggedIn, require('./routes/api/shops'));
 app.use('/api/comments', ensureLoggedIn, require('./routes/api/comments'));
 app.use('/api/reviews', ensureLoggedIn, require('./routes/api/reviews'));
+app.use('/api/photos', ensureLoggedIn, require('./routes/api/photos'));
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX/API requests

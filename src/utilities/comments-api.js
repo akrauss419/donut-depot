@@ -1,10 +1,6 @@
 import sendRequest from "./send-request";
 const BASE_URL = '/api/comments';
 
-export async function index(donut) {
-  return await sendRequest(`/api/donuts/${donut._id}`);
-}
-
 export async function createComment(commentData, donut) {
   return sendRequest(`${BASE_URL}/${donut._id}/new`, 'POST', commentData);
 }

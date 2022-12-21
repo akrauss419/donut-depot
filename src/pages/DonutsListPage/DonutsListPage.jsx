@@ -5,7 +5,7 @@ import './DonutsListPage.css';
 
 export default function DonutsListPage({ donuts, setDonuts, user }) {
   const navigate = useNavigate();
-  
+
   async function handleUpdateDonut(donutFormData, donutId) {
     await donutsAPI.updateDonut(donutFormData, donutId);
     const updatedDonuts = await donutsAPI.index();
@@ -24,7 +24,7 @@ export default function DonutsListPage({ donuts, setDonuts, user }) {
       <h1>Donuts List</h1>
       <div>
         {donuts.map((d, idx) => {
-          return <DonutCard donut={d} key={idx} handleUpdateDonut={handleUpdateDonut} handleDeleteDonut={handleDeleteDonut} />;
+          return <DonutCard donut={d} key={idx} handleUpdateDonut={handleUpdateDonut} handleDeleteDonut={handleDeleteDonut} user={user} />;
         })}
       </div>
     </>

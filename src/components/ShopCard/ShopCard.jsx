@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './ShopCard.css';
 
-export default function ShopCard({ shop, handleDeleteShop }) {
+export default function ShopCard({ shop, handleDeleteShop, user }) {
   const navigate = useNavigate();
 
   function getDate(item) {
@@ -15,7 +15,7 @@ export default function ShopCard({ shop, handleDeleteShop }) {
       <div>
         <h1>{shop.name}</h1>
         <p>Location: {shop.location}</p>
-        <p>Added by {shop.user} on {getDate(shop.createdAt)}</p>
+        <p>Added by {user.name} on {getDate(shop.createdAt)}</p>
       </div>
     </Link>
       <div>

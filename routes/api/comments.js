@@ -4,7 +4,6 @@ const commentsCtrl = require('../../controllers/api/comments');
 const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
 router.post('/:id/new', ensureLoggedIn, commentsCtrl.createComment);
-// router.get('/donuts/:donutId', commentsCtrl.index);
 router.put('/:id', ensureLoggedIn, commentsCtrl.updateComment);
 router.delete('/:id', ensureLoggedIn, commentsCtrl.deleteComment);
 

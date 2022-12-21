@@ -25,7 +25,7 @@ export default function ReviewCard({ review, handleUpdateReview, handleDeleteRev
               {review.content}
             </div>
             <h3>Rating: {review.rating}</h3>
-            <p>Posted by {review.user} on {getDate(review.createdAt)}</p>
+            <p>Posted by {user.name} on {getDate(review.createdAt)}</p>
             <button onClick={() => setShowEditReviewForm(!showEditReviewForm)}>Edit</button>
             <button onClick={() => handleDeleteReview(review._id)}>Delete</button>
           </>

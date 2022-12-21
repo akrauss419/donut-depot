@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import * as photosAPI from '../../utilities/photos-api';
 import './NewDonutPage.css';
 
 export default function NewDonutPage({ addDonut }) {
+  const [title, setTitle] = useState('');
+  const [photos, setPhotos] = useState([]);
   const [newDonut, setNewDonut] = useState({
     flavor: "",
     type: "Dough",
@@ -12,6 +15,18 @@ export default function NewDonutPage({ addDonut }) {
     rating: 3,
     favorite: false,
   });
+
+  const fileInputRef = useRef();
+
+  async function handleUpload() {
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('photo', fileInputRef.current.files[0]);
+    const newPhoto = await photosAPI.upload(formData);
+    setPhotos([newPhoto, ...photos]);
+    setTitle('');
+    fileInputRef.current.value = '';
+  }
   
   function handleAddDonut(evt) {
     evt.preventDefault();
@@ -75,7 +90,7 @@ export default function NewDonutPage({ addDonut }) {
           />
         </div>
 
-        <label htmlFor="textarea">Other qualities:</label>
+        <label htmlFor="textarea">Other Qualities:</label>
         <textarea
           name="unique"
           value={newDonut.unique}
@@ -118,6 +133,16 @@ export default function NewDonutPage({ addDonut }) {
 
         <button type="submit">Add to Donut Case</button>
       </form>
+      <div>
+        <label htmlFor="file">Show Us Your Donut:</label>
+        <input type="file" ref={fileInputRef} />
+        <input
+          value={title}
+          onChange={(evt) => setTitle(evt.target.value)}
+          placeholder="Photo Title"
+        />
+        <button onClick={handleUpload}>Upload Photo</button>
+      </div>
     </>
   );
 }

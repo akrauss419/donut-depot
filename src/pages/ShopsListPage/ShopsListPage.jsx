@@ -24,7 +24,7 @@ export default function ShopsListPage({ shops, setShops, user }) {
       <h1>Explore Donut Shops</h1>
       <div>
         {shops.map((s, idx) => {
-          return <ShopCard shop={s} key={idx} handleUpdateShop={handleUpdateShop} handleDeleteShop={handleDeleteShop} />;
+          return <ShopCard shop={s} key={idx} handleUpdateShop={handleUpdateShop} handleDeleteShop={handleDeleteShop} user={user} />;
         })}
       </div>
     </>

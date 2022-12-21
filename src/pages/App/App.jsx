@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import * as donutsAPI from '../../utilities/donuts-api';
 import * as shopsAPI from '../../utilities/shops-api';
@@ -22,7 +22,6 @@ export default function App() {
   const [user, setUser] = useState(getUser());
   const [donuts, setDonuts] = useState([]);
   const [shops, setShops] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     async function fillDonutCase() {
@@ -63,12 +62,12 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
           <Routes>
             {/* Route components in here */}
-            <Route path="/donuts" element={<DonutsListPage donuts={donuts} setDonuts={setDonuts} />} />
+            <Route path="/donuts" element={<DonutsListPage donuts={donuts} setDonuts={setDonuts} user={user} />} />
             <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} addDonut={addDonut} />} />
             <Route path="/donuts/:donutId" element={<DonutDetailPage donuts={donuts} setDonuts={setDonuts} user={user} />} />
             <Route path="/donuts/:donutId/update" element={<UpdateDonutPage donuts={donuts} setDonuts={setDonuts} />} />
             <Route path="/comments/:id/update" element={<UpdateCommentPage />} />
-            <Route path="/shops" element={<ShopsListPage shops={shops} setShops={setShops} />} />
+            <Route path="/shops" element={<ShopsListPage shops={shops} setShops={setShops} user={user} />} />
             <Route path="/shops/new" element={<NewShopPage shops={shops} addShop={addShop} />} />
             <Route path="/shops/:shopId" element={<ShopDetailPage shops={shops} setShops={setShops} user={user} />} />
             <Route path="/shops/:shopId/update" element={<UpdateShopPage shops={shops} setShops={setShops} />} />
