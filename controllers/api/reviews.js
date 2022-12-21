@@ -25,6 +25,7 @@ async function updateReview(req, res, next) {
     const shop = await Shop.findOne({'reviews._id': req.params.id});
       const review = shop.reviews.id(req.params.id);
       review.content = req.body.content;
+      review.rating = req.body.rating;
       await shop.save();
       const shops = await Shop.find({});
       res.json(shops);

@@ -1,7 +1,10 @@
 import { useState } from 'react';
 
 export default function UpdateReviewPage({ review, handleUpdateReview, showEditReviewForm, setShowEditReviewForm }) {
-  const [reviewFormData, setReviewFormData] = useState({content: review.content});
+  const [reviewFormData, setReviewFormData] = useState({
+    content: review.content,
+    rating: review.rating
+  });
 
   function handleChange(evt) {
     const updateReview = {...reviewFormData, [evt.target.name]: evt.target.value};
@@ -12,6 +15,7 @@ export default function UpdateReviewPage({ review, handleUpdateReview, showEditR
     evt.preventDefault();
     setShowEditReviewForm(!showEditReviewForm);
     handleUpdateReview(reviewFormData, review._id);
+    console.log(reviewFormData);
   }
 
   return(
