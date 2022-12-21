@@ -1,10 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './DonutCard.css';
 
-export default function DonutCard({ donut, comments, handleDeleteDonut, user }) {
+export default function DonutCard({ donut, handleDeleteDonut }) {
   const navigate = useNavigate();
-  const date = new Date(donut.createdAt);
-  const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
+
+  function getDate(item) {
+    const date = new Date(item);
+    return date.toDateString();
+  }
   
   return(
     <>
@@ -13,7 +16,7 @@ export default function DonutCard({ donut, comments, handleDeleteDonut, user }) 
           <h1>{donut.flavor}</h1>
           <p>Type: {donut.type}</p>
           <p>Available at {donut.shop}</p>
-          <p>Added by {donut.user} on {date.toLocaleDateString(undefined, dateOptions)}</p>
+          <p>Added by {donut.user} on {getDate(donut.createdAt)}</p>
         </div>
       </Link>
         <div>

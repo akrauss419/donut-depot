@@ -22,8 +22,6 @@ export default function DonutDetailPage({ donuts, setDonuts, user }) {
   
   if (!donutDetail) return null;
 
-  const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
-
   async function addComment(comment, donut) {
     const allDonuts = await commentsAPI.createComment(comment, donut);
     setDonuts(allDonuts);

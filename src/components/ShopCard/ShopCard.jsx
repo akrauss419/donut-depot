@@ -1,10 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './ShopCard.css';
 
-export default function ShopCard({ shop, reviews, handleDeleteShop }) {
+export default function ShopCard({ shop, handleDeleteShop }) {
   const navigate = useNavigate();
-  const date = new Date(shop.createdAt);
-  const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
+
+  function getDate(item) {
+    const date = new Date(item);
+    return date.toDateString();
+  }
   
   return(
     <>
@@ -12,7 +15,7 @@ export default function ShopCard({ shop, reviews, handleDeleteShop }) {
       <div>
         <h1>{shop.name}</h1>
         <p>Location: {shop.location}</p>
-        <p>Added by {shop.user} on {date.toLocaleDateString(undefined, dateOptions)}</p>
+        <p>Added by {shop.user} on {getDate(shop.createdAt)}</p>
       </div>
     </Link>
       <div>

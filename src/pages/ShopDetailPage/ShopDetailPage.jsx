@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import * as reviewsAPI from '../../utilities/reviews-api';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
 import './ShopDetailPage.css';
@@ -10,8 +10,6 @@ export default function ShopDetailPage({ shops, setShops, user}) {
     content: "",
     rating: 3
   });
-  
-  const navigate = useNavigate();
 
   const { shopId } = useParams();
 
@@ -24,11 +22,16 @@ export default function ShopDetailPage({ shops, setShops, user}) {
   }, [shopDetail])
 
   if (!shopDetail) return null;
-
-  const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
   
   async function addReview(review, shop) {
     const allShops = await reviewsAPI.createReview(review, shop);
+    setShops(allShops);
+    const detail = allShops.find((s) => s._id === shopId);
+    setShopDetail(detail);
+  }
+
+  async function handleUpdateReview(reviewFormData, id) {
+    const allShops = await reviewsAPI.updateReview(reviewFormData, id);
     setShops(allShops);
     const detail = allShops.find((s) => s._id === shopId);
     setShopDetail(detail);
@@ -65,7 +68,7 @@ export default function ShopDetailPage({ shops, setShops, user}) {
       <h2>Reviews:</h2>
       <div>
         {shopDetail.reviews.length === 0 ? (<h3>No Reviews Yet</h3>) : shopDetail.reviews.map((review, idx) => (
-          <ReviewCard review={review} key={idx} handleDeleteReview={handleDeleteReview} user={user} />
+          <ReviewCard shopDetail={shopDetail} review={review} key={review._id} handleUpdateReview={handleUpdateReview} handleDeleteReview={handleDeleteReview} user={user} />
         ))}
       </div>
       <h4>Review This Donut Shop:</h4>

@@ -4,8 +4,11 @@ import './CommentCard.css';
 
 export default function CommentCard({ comment, handleUpdateComment, handleDeleteComment, user }) {
   const [showEditCommentForm, setShowEditCommentForm] = useState(false);
-  const date = new Date(comment.createdAt);
-  const dateOptions = {year: 'numeric', month: 'short', day: 'numeric'};
+
+  function getDate(item) {
+    const date = new Date(item);
+    return date.toDateString();
+  }
   
   return(
     <div>{user._id === comment.user ? 
@@ -21,7 +24,7 @@ export default function CommentCard({ comment, handleUpdateComment, handleDelete
             <div>
               {comment.content}
             </div>
-            <p>Posted by {comment.user} on {date.toLocaleDateString(undefined, dateOptions)}</p>
+            <p>Posted by {comment.user} on {getDate(comment.createdAt)}</p>
             <button onClick={() => setShowEditCommentForm(!showEditCommentForm)}>Edit</button>
             <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
           </>
@@ -32,7 +35,7 @@ export default function CommentCard({ comment, handleUpdateComment, handleDelete
         <div>
           {comment.content}
         </div>
-        <p>Posted by {comment.user} on {date.toLocaleDateString(undefined, dateOptions)}</p>
+        <p>Posted by {comment.user} on {getDate(comment.createdAt)}</p>
       </>
     }
     </div>

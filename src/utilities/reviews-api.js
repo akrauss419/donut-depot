@@ -5,6 +5,10 @@ export async function createReview(reviewData, shop) {
   return sendRequest(`${BASE_URL}/${shop._id}/new`, 'POST', reviewData);
 }
 
+export async function updateReview(reviewFormData, id) {
+  return sendRequest(`${BASE_URL}/${id}`, 'PUT', reviewFormData);
+}
+
 export async function deleteReview(id) {
   return sendRequest(`${BASE_URL}/${id}`, 'DELETE');
 }

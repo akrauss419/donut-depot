@@ -13,6 +13,7 @@ import ShopsListPage from '../ShopsListPage/ShopsListPage';
 import NewShopPage from '../NewShopPage/NewShopPage';
 import ShopDetailPage from '../ShopDetailPage/ShopDetailPage';
 import UpdateShopPage from '../UpdateShopPage/UpdateShopPage';
+import UpdateReviewPage from '../UpdateReviewPage/UpdateReviewPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import NavBar from '../../components/NavBar/NavBar';
 import './App.css';
@@ -71,6 +72,7 @@ export default function App() {
             <Route path="/shops/new" element={<NewShopPage shops={shops} addShop={addShop} />} />
             <Route path="/shops/:shopId" element={<ShopDetailPage shops={shops} setShops={setShops} user={user} />} />
             <Route path="/shops/:shopId/update" element={<UpdateShopPage shops={shops} setShops={setShops} />} />
+            <Route path="/reviews/:id/update" element={<UpdateReviewPage />} />
             <Route path="/profile" element={<ProfilePage user={user} donuts={donuts} myDonuts={myDonuts} />} />
           </Routes>
         </>
