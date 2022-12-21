@@ -11,17 +11,31 @@ export default function ShopCard({ shop, handleDeleteShop, user }) {
   
   return(
     <>
-    <Link to={`/shops/${shop._id}`}>
-      <div>
-        <h1>{shop.name}</h1>
-        <p>Location: {shop.location}</p>
-        <p>Added by {user.name} on {getDate(shop.createdAt)}</p>
-      </div>
-    </Link>
-      <div>
-        <button onClick={() => navigate(`/shops/${shop._id}/update`)}>Edit Post</button>
-        <button onClick={() => handleDeleteShop(shop._id)}>Delete Shop</button>
-      </div>
+      {user._id === shop.user ?
+        <>
+          <Link to={`/shops/${shop._id}`}>
+            <div>
+              <h1>{shop.name}</h1>
+              <p>Location: {shop.location}</p>
+              <p>Added by {user.name} on {getDate(shop.createdAt)}</p>
+            </div>
+          </Link>
+            <div>
+              <button onClick={() => navigate(`/shops/${shop._id}/update`)}>Edit Post</button>
+              <button onClick={() => handleDeleteShop(shop._id)}>Delete Shop</button>
+            </div>
+        </>
+        :
+        <>
+          <Link to={`/shops/${shop._id}`}>
+            <div>
+              <h1>{shop.name}</h1>
+              <p>Location: {shop.location}</p>
+              <p>Added by {user.name} on {getDate(shop.createdAt)}</p>
+            </div>
+          </Link>
+        </>
+      }
     </>
   );
 }
