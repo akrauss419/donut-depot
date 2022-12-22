@@ -15,7 +15,8 @@ const reviewSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
+  userName: String
 }, {
   timestamps: true
 });
@@ -39,7 +40,8 @@ const shopSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
+  userName: String
 }, {
   timestamps: true
 });

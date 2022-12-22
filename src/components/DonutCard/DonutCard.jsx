@@ -38,17 +38,19 @@ export default function DonutCard({ donut, handleDeleteDonut, user }) {
           </div>
         </div>
         :  
-        <div className="DonutCard">
-          <Link to={`/donuts/${donut._id}`}>
-            <div>
-              <img className="Images" src={donut.url} />
-            </div>
-            <div className="DonutCardDetails">
-              <h1>{donut.flavor}</h1>
-              <h3>Available at {donut.shop}</h3>
-              <p>Added by {donut.userName} on {getDate(donut.createdAt)}</p>
-            </div>
-          </Link>
+        <div className="DonutCardDeck">
+          <div className="DonutCard">
+            <Link to={`/donuts/${donut._id}`}>
+              <div>
+                <img className="Images" src={donut.url} />
+              </div>
+              <div className="DonutCardDetails">
+                <h1 className="DonutFlavor">{donut.flavor}</h1>
+                <h3>Available at {donut.shop}</h3>
+                <p>Added by <span class="UserName">{donut.userName}</span> on {getDate(donut.createdAt)}</p>
+              </div>
+            </Link>
+          </div>
         </div>
       }
     </>

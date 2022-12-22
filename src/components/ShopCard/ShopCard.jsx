@@ -12,29 +12,33 @@ export default function ShopCard({ shop, handleDeleteShop, user }) {
   return(
     <>
       {user._id === shop.user ?
-        <>
-          <Link to={`/shops/${shop._id}`}>
-            <div>
-              <h1>{shop.name}</h1>
-              <p>Location: {shop.location}</p>
-              <p>Added by {user.name} on {getDate(shop.createdAt)}</p>
-            </div>
-          </Link>
-            <div>
-              <button onClick={() => navigate(`/shops/${shop._id}/update`)}>Edit Post</button>
-              <button onClick={() => handleDeleteShop(shop._id)}>Delete Shop</button>
-            </div>
-        </>
+        <div className="ShopCardDeck">
+          <div className="ShopCard">
+            <Link to={`/shops/${shop._id}`}>
+              <div className="ShopCardDetails">
+                <h1 className="ShopName">{shop.name}</h1>
+                <p className="Location"><span className="LocationLabel">Location:</span> {shop.location}</p>
+                <p>Added by <span class="UserName">{shop.userName}</span> on {getDate(shop.createdAt)}</p>
+              </div>
+            </Link>
+              <div className="ShopButtonsContainer">
+                <button onClick={() => navigate(`/shops/${shop._id}/update`)}>Edit Post</button>
+                <button onClick={() => handleDeleteShop(shop._id)}>Delete Shop</button>
+              </div>
+          </div>
+        </div>
         :
-        <>
-          <Link to={`/shops/${shop._id}`}>
-            <div>
-              <h1>{shop.name}</h1>
-              <p>Location: {shop.location}</p>
-              <p>Added by {user.name} on {getDate(shop.createdAt)}</p>
-            </div>
-          </Link>
-        </>
+        <div className="ShopCardDeck">
+          <div className="ShopCard">
+            <Link to={`/shops/${shop._id}`}>
+              <div className="ShopCardDetials">
+                <h1 className="ShopName">{shop.name}</h1>
+                <p>Location: {shop.location}</p>
+                <p>Added by <span class="UserName">{shop.userName}</span> on {getDate(shop.createdAt)}</p>
+              </div>
+            </Link>
+          </div>
+        </div>
       }
     </>
   );

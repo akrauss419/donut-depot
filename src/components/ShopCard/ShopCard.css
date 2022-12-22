@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+}
+
+.ShopCardDeck {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10vmin;
+}
+
+.ShopCard {
+  height: 40vh;
+  width: 40vw;
+  background-color: rgb(217, 184, 134);
+  border: 2vmin solid rgb(241, 184, 204);
+  border-radius: 3vmin;
+}
+
+.ShopCard > a {
+  color: black;
+  text-decoration: none;
+}
+
+.ShopCardDetails > * {
+  margin: 3vmin auto;
+}
+
+.ShopName {
+  font-size: 6vmin;
+}
+
+.Location {
+  font-size: 2.5vmin;
+  margin: auto 1vmin;
+}
+
+.LocationLabel {
+  font-weight: bold;
+}
+
+.UserName {
+  font-weight: bold;
+}
+
+.ShopButtonsContainter {
+  margin-top: 3.5vmin;
+}
