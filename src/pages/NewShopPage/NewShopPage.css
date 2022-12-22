@@ -1,0 +1,79 @@
+label {
+  font-size: 3.5vmin;
+  font-weight: bold;
+  color: rgb(116, 49, 22);
+}
+
+.ShopFormHeadline {
+  font-size: 6vmin;
+}
+
+.ContainerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ShopFormContainer {
+  height: 120vh;
+  width: 58vw;
+  background-color: rgb(217, 184, 134);
+  border: 2vmin solid rgb(241, 184, 204);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10vmin;
+}
+
+.ShopForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 10vmin;
+}
+
+.ShopNameInput {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin: auto -3vmin;
+  margin-top: -3vmin;
+}
+
+.ShopNameInput > * {
+  margin: 2vmin;
+}
+
+.ShopNameLabel {
+  margin-right: 5.5vmin;
+}
+
+.ShopLocationInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto -3vmin;
+}
+
+.ShopLocationInput > * {
+  margin: 2vmin;
+}
+
+.ShopLocationLabel {
+  margin-right: 10vmin;
+}
+
+.NewShopInput {
+  width: 30vw;
+}
+
+.AddShopButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-top: 5vmin;
+  margin-left: 30vmin;
+}

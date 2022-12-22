@@ -170,7 +170,7 @@ export default function NewDonutPage({ donuts, setDonuts, addDonut }) {
             </div>
 
             <div className="AddDonutButtonContainer">
-              <button type="submit" className="AddDonutButton">Add to Donut Case</button>
+              <button type="submit">Add to Donut Case</button>
             </div>
           </form>
         </div>

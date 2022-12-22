@@ -15,6 +15,7 @@ async function index(req, res) {
 async function create(req, res) {
   try {
     req.body.user = req.user._id;
+    req.body.userName = req.user.name;
     const shop = await Shop.create(req.body);
     await shop.save();
     const allShops = await Shop.find({});

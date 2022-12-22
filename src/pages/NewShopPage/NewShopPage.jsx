@@ -18,30 +18,42 @@ export default function NewShopPage({ addShop }) {
 
   return(
     <>
-      <h1>Add a Donut Shop</h1>
-      <form onSubmit={handleAddShop}>
-        <label htmlFor="input">Shop Name:</label>
-        <input
-          name="name"
-          type="text"
-          value={newShop.name}
-          onChange={(evt) => setNewShop({...newShop, [evt.target.name]: evt.target.value })}
-          placeholder="Name"
-          required
-        />
+      <h1 className="ShopFormHeadline">Add a Donut Shop</h1>
+      <div className="ContainerContainer">
+        <div className="ShopFormContainer">
+          <form onSubmit={handleAddShop} className="ShopForm">
+            <div className="ShopNameInput">
+              <label htmlFor="input" className="ShopNameLabel">Shop Name:</label>
+              <input
+                className="NewShopInput"
+                name="name"
+                type="text"
+                value={newShop.name}
+                onChange={(evt) => setNewShop({...newShop, [evt.target.name]: evt.target.value })}
+                placeholder="Name"
+                required
+              />
+            </div>
 
-        <label htmlFor="input">Location:</label>
-        <input
-          name="location"
-          type="text"
-          value={newShop.location}
-          onChange={(evt) => setNewShop({...newShop, [evt.target.name]: evt.target.value })}
-          placeholder="Street, City, State, Zip"
-          required
-        />
+            <div className="ShopLocationInput">
+              <label htmlFor="input" className="ShopLocationLabel">Location:</label>
+              <input
+                className="NewShopInput"
+                name="location"
+                type="text"
+                value={newShop.location}
+                onChange={(evt) => setNewShop({...newShop, [evt.target.name]: evt.target.value })}
+                placeholder="Street, City, State, Zip"
+                required
+              />
+            </div>
 
-        <button type="submit">Add Donut Shop</button>
-      </form>
+            <div className="AddShopButtonContainer">
+              <button type="submit">Add Donut Shop</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </>
   );
 }

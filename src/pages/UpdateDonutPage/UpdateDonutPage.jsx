@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as donutsAPI from '../../utilities/donuts-api';
+import './UpdateDonutPage.css';
 
 export default function UpdateDonutPage({ donuts, setDonuts }) {
   const navigate = useNavigate();
@@ -28,88 +29,112 @@ export default function UpdateDonutPage({ donuts, setDonuts }) {
 
   return(
     <>
-      <h1>Edit Donut Post</h1>
-      <form onSubmit={handleSubmitEdits}>
-        <label htmlFor="input">Flavor:</label>
-          <input
-            name="flavor"
-            type="text"
-            value={donutFormData.flavor}
-            onChange={handleChange}
-            placeholder="Glazed, Chocolate, etc."
-          />
+      <h1 className="EditDonutFormHeadline">Edit Donut Post</h1>
+      <div className="ContainerContainer">
+        <div className="EditDonutFormContainer">
+          <form onSubmit={handleSubmitEdits} className="DonutForm">
+            <div className="FlavorInput">
+              <label htmlFor="input" className="FlavorLabel">Flavor:</label>
+              <input
+                name="flavor"
+                type="text"
+                value={donutFormData.flavor}
+                onChange={handleChange}
+                placeholder="Glazed, Chocolate, etc."
+              />
+            </div>
 
-          <label htmlFor="select">Type:</label>
-          <select
-            name="type"
-            value={donutFormData.type}
-            onChange={handleChange}
-          >
-            <option value="Dough">Dough</option>
-            <option value="Cake">Cake</option>
-          </select>
+            <div className="TypeInput">
+              <label htmlFor="select" className="TypeLabel">Type:</label>
+              <select
+                className="DonutFormSelect"
+                name="type"
+                value={donutFormData.type}
+                onChange={handleChange}
+              >
+                <option value="Dough">Dough</option>
+                <option value="Cake">Cake</option>
+              </select>
+            </div>
 
-          <div
-            value={donutFormData.sprinkles}
-            onChange={handleChange}
-          >
-            <label htmlFor="radio">Sprinkles:</label>
-            <label htmlFor="radio">Yes</label>
-            <input 
-              name="sprinkles"
-              type="radio"
-              value="Yes"
-              id="Yes"
-            />
-            <label htmlFor="radio">No</label>
-            <input 
-              name="sprinkles"
-              type="radio"
-              value="No"
-              id="No"
-              defaultChecked
-            />
-          </div>
+            <div
+              className="SprinklesInput"
+              value={donutFormData.sprinkles}
+              onChange={handleChange}
+            >
+              <label htmlFor="radio" className="SprinklesLabel">Sprinkles:</label>
+              <label htmlFor="radio">Yes</label>
+              <input 
+                name="sprinkles"
+                type="radio"
+                value="Yes"
+                id="Yes"
+              />
+              <label htmlFor="radio">No</label>
+              <input 
+                name="sprinkles"
+                type="radio"
+                value="No"
+                id="No"
+                defaultChecked
+              />
+            </div>
 
-          <label htmlFor="textarea">Other qualities:</label>
-          <textarea
-            name="unique"
-            value={donutFormData.unique}
-            onChange={handleChange}
-            placeholder="What else makes this donut unique? (Special toppings, filling, etc.)"
-          />
+            <div className="QualitiesInput">
+              <label htmlFor="textarea" className="QualitiesLabel">Other qualities:</label>
+              <textarea
+                className="DonutFormTextArea"
+                name="unique"
+                value={donutFormData.unique}
+                onChange={handleChange}
+                placeholder="What else makes this donut unique? (Special toppings, filling, etc.)"
+              />
+            </div>
 
-          <label htmlFor="input">Shop:</label>
-          <input
-            name="shop"
-            type="text"
-            value={donutFormData.shop}
-            onChange={handleChange}
-            placeholder="Who made this donut?"
-          />
+            <div className="ShopInput">
+              <label htmlFor="input" className="ShopLabel">Shop:</label>
+              <input
+                name="shop"
+                type="text"
+                value={donutFormData.shop}
+                onChange={handleChange}
+                placeholder="Who made this donut?"
+              />
+            </div>
 
-          <label htmlFor="textarea">Review:</label>
-          <textarea
-            name="review"
-            value={donutFormData.review}
-            onChange={handleChange}
-            placeholder="Review this donut"
-          />
+            <div className="ReviewInput">
+              <label htmlFor="textarea" className="ReviewLabel">Review:</label>
+              <textarea
+                className="DonutFormTextArea"
+                name="review"
+                value={donutFormData.review}
+                onChange={handleChange}
+                placeholder="Review this donut"
+              />
+            </div>
 
-          <label htmlFor="select">Rating:</label>
-          <select
-            name="rating"
-            value={donutFormData.rating}
-            onChange={handleChange}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        <button type="submit">Submit Edits</button>
-      </form>
+            <div className="RatingInput">
+              <label htmlFor="select" className="RatingLabel">Rating:</label>
+              <select
+                className="DonutFormSelect"
+                name="rating"
+                value={donutFormData.rating}
+                onChange={handleChange}
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+            
+            <div className="EditDonutButtonContainer">
+              <button type="submit">Submit Edits</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </>
   );
 }

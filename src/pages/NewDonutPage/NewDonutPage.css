@@ -87,7 +87,7 @@ label {
 }
 
 .QualitiesLabel {
-  margin-right: 3.2vmin;
+  margin-right: 3.4vmin;
 }
 
 .ShopInput {
@@ -141,6 +141,7 @@ label {
 .DonutFormTextArea {
   height: 12vh;
   width: 24vw;
+  font-size: 2vmin;
 }
 
 .PhotoUploadContainer {
@@ -169,8 +170,4 @@ label {
   align-items: center;
   align-content: center;
   margin-left: 27vmin;
-}
-
-.AddDonutButton {
- 
 }
