@@ -4,18 +4,22 @@ import './ProfilePage.css';
 export default function ProfilePage({ user, donuts, handleUpdateDonut, handleDeleteDonut }) {
   return(
     <>
-      <h1>Profile Page</h1>
-      <div>
-        <h4>Username: {user.name}</h4>
-        <h5>Email: {user.email}</h5>
+      <div className="ProfileHeadline">
+        <h1>Pr</h1><h3 className="DonutEmoji">🍩</h3><h1>file Page</h1>
       </div>
-      <div>
-        <h2>My Donut Box</h2>
-        <div>
-          {donuts.filter(donut => donut.user === user._id).map((d, idx) => {
-            return <DonutCard donut={d} key={idx} handleUpdateDonut={handleUpdateDonut} handleDeleteDonut={handleDeleteDonut} user={user} />
-          })}
+      <div className="ProfileContainer">
+        <div className="ProfileInfo">
+          <h1>Username: {user.name}</h1>
+          <h2>Email: {user.email}</h2>
         </div>
+      </div>
+      <div className="ProfileHeadline">
+        <h1>My D</h1><h3 className="DonutEmoji">🍩</h3><h1>nut B</h1><h3 className="DonutEmoji">🍩</h3><h1>x</h1>
+      </div>
+      <div className="DonutBox">
+        {donuts.filter(donut => donut.user === user._id).map((d, idx) => {
+          return <DonutCard donut={d} key={idx} handleUpdateDonut={handleUpdateDonut} handleDeleteDonut={handleDeleteDonut} user={user} />
+        })}
       </div>
     </>
   );

@@ -23,8 +23,8 @@ export default function CommentCard({ comment, handleUpdateComment, handleDelete
           <div className="CommentCardContainer">
             <div className="CommentCard">
               <p className="CommentContent">{comment.content}</p>
-              <p className="CommentTimestamp">Posted by <span className="UserName">{user.name}</span> on {getDate(comment.createdAt)}</p>
-              <div className="CommentActionButtons">
+              <p className="CommentTimestamp">Posted by <span className="UserName">{comment.userName}</span> on {getDate(comment.createdAt)}</p>
+              <div>
                 <button onClick={() => setShowEditCommentForm(!showEditCommentForm)}>Edit</button>
                 <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
               </div>
@@ -37,7 +37,7 @@ export default function CommentCard({ comment, handleUpdateComment, handleDelete
         <div className="CommentCard">
           <p className="CommentContent">{comment.content}</p>
         </div>
-        <p className="CommentTimestamp">Posted by <span className="UserName">{user.name}</span> on {getDate(comment.createdAt)}</p>
+        <p className="CommentTimestamp">Posted by <span className="UserName">{comment.userName}</span> on {getDate(comment.createdAt)}</p>
       </div>
     }
     </div>

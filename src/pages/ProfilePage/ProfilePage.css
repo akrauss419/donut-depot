@@ -1,0 +1,35 @@
+.ProfileHeadline {
+  margin: 5vmin;
+}
+
+.ProfileHeadline > * {
+  font-size: 8vmin;
+  display: inline;
+}
+
+.DonutEmoji {
+  font-size: 5vmin;
+}
+
+.ProfileContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ProfileInfo {
+  height: 25vh;
+  width: 35vw;
+  background-color: rgb(202, 118, 135);
+  border: 1vmin solid black;
+  border-radius: 3vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3.5vmin;
+}
+
+.DonutBox {
+  padding-bottom: 2vmin;
+}

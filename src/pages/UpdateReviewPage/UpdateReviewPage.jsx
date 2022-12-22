@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './UpdateReviewPage.css';
 
 export default function UpdateReviewPage({ review, handleUpdateReview, showEditReviewForm, setShowEditReviewForm }) {
   const [reviewFormData, setReviewFormData] = useState({
@@ -20,31 +21,35 @@ export default function UpdateReviewPage({ review, handleUpdateReview, showEditR
 
   return(
     <>
-      <h4>Edit Review:</h4>
-      <div>
-        <form onSubmit={handleSubmitEdits}>
-          <textarea
-            name="content"
-            value={reviewFormData.content}
-            onChange={handleChange}
-            placeholder="How were the donuts and your experience?"
-          />
+      <div className="ReviewFormContainer">
+        <h4 className="EditReviewFormHeadline">Edit Review:</h4>
+          <form onSubmit={handleSubmitEdits} className="ReviewForm">
+            <textarea
+              className="ReviewTextArea"
+              name="content"
+              value={reviewFormData.content}
+              onChange={handleChange}
+              placeholder="How were the donuts and your experience?"
+            />
 
-          <label htmlFor="select">Rating:</label>
-          <select
-            name="rating"
-            value={reviewFormData.rating}
-            onChange={handleChange}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
+            <div className="ReviewRating">
+              <label htmlFor="select">Rating:</label>
+              <select
+                className="ReviewSelect"
+                name="rating"
+                value={reviewFormData.rating}
+                onChange={handleChange}
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
 
-          <button type="submit">Submit Edits</button>
-        </form>
+            <button type="submit">Submit Edits</button>
+          </form>
       </div>
     </>
   );

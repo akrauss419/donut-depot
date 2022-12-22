@@ -21,25 +21,33 @@ export default function ReviewCard({ review, handleUpdateReview, handleDeleteRev
               <button onClick={() => handleDeleteReview(review._id)}>Delete</button>
             </>
           :
-            <>
-              <div>
-                {review.content}
+            <div className="ReviewCardContainer">
+              <div className="ReviewCard">
+                <div className="ReviewBackground">
+                  <p className="ReviewContent">{review.content}</p>
+                </div>
+                <div>
+                  <h1>Rating: {review.rating} ⭐️</h1>
+                  <p className="ReviewTimestamp">Posted by <span className="UserName">{review.userName}</span> on {getDate(review.createdAt)}</p>
+                </div>
+                <div className="ReviewActionButtons">
+                  <button onClick={() => setShowEditReviewForm(!showEditReviewForm)}>Edit</button>
+                  <button onClick={() => handleDeleteReview(review._id)}>Delete</button>
+                </div>
               </div>
-              <h3>Rating: {review.rating}</h3>
-              <p>Posted by {user.name} on {getDate(review.createdAt)}</p>
-              <button onClick={() => setShowEditReviewForm(!showEditReviewForm)}>Edit</button>
-              <button onClick={() => handleDeleteReview(review._id)}>Delete</button>
-            </>
+            </div>
           }
         </>
         :
-        <>
-          <div>
-            {review.content}
+        <div className="ReviewCardContainer">
+          <div className="ReviewCard">
+            <p className="ReviewContent">{review.content}</p>
           </div>
-          <h3>Rating: {review.rating}</h3>
-          <p>Posted by {review.user} on {getDate(review.createdAt)}</p>
-        </>
+          <div>
+            <h1>Rating: {review.rating} ⭐️</h1>
+            <p className="ReviewTimestamp">Posted by <span className="UserName">{review.userName}</span> on {getDate(review.createdAt)}</p>
+          </div>
+        </div>
       }
     </div>
   );
