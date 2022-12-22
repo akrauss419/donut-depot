@@ -1,0 +1,15 @@
+.HomeHeadline {
+  font-size: 8vmin;
+  margin: 3vmin;
+}
+
+.HomeImage {
+  height: 60vh;
+  width: 50vw;
+  margin-top: 3vmin;
+}
+
+.Backdrop {
+  height: 100vh;
+  background-color: rgb(217, 184, 134);
+}
