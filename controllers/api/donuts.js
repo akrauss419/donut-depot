@@ -18,6 +18,7 @@ async function index(req, res) {
 async function create(req, res) {
   try {
     req.body.user = req.user._id;
+    req.body.userName = req.user.name;
     const donut = await Donut.create(req.body);
     await donut.save();
     const allDonuts = await Donut.find({});

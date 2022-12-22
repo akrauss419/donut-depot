@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as donutsAPI from '../../utilities/donuts-api';
 import './NewDonutPage.css';
 
@@ -18,6 +19,8 @@ export default function NewDonutPage({ donuts, setDonuts, addDonut }) {
   });
 
   const fileInputRef = useRef();
+
+  const navigate = useNavigate();
   
   async function handleAddDonut(evt) {
     evt.preventDefault();
@@ -41,7 +44,8 @@ export default function NewDonutPage({ donuts, setDonuts, addDonut }) {
         review: "",
         rating: 3,
         url: ""
-      });
+      })
+      navigate('/donuts');
     } catch {
       return 'Validation Failed';
     }
