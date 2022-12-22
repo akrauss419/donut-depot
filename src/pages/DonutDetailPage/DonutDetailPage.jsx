@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as commentsAPI from '../../utilities/comments-api';
 import CommentCard from '../../components/CommentCard/CommentCard';
@@ -60,7 +60,7 @@ export default function DonutDetailPage({ donuts, setDonuts, user }) {
     <>
       <div className="DonutDetailContainer"> 
         <div className="DonutDetail">
-          <img className="DetailImage" src={donutDetail.url} />
+          <img className="DetailImage" src={donutDetail.url} alt="" />
           <h1 className="DonutFlavor">{donutDetail.flavor}</h1>
           <h2>Home: {donutDetail.shop}</h2>
           <div className="DonutTraits">
@@ -94,6 +94,7 @@ export default function DonutDetailPage({ donuts, setDonuts, user }) {
           <CommentCard donutDetail={donutDetail} comment={comment} key={comment._id} handleUpdateComment={handleUpdateComment} handleDeleteComment={handleDeleteComment} user={user} />
         ))}
       </div>
+
       <div className="CommentFormContainer">
         <h1 className="CommentFormHeadline">Comment on This Donut:</h1>
         <form onSubmit={handleAddComment} className="CommentForm">

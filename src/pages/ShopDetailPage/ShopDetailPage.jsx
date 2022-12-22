@@ -60,44 +60,54 @@ export default function ShopDetailPage({ shops, setShops, user}) {
   
   return(
     <>
-      <h1>{shopDetail.name} Details</h1>
-      <div>
-        <h4>{shopDetail.location}</h4>
-        <h6>Date Added: {getDate(shopDetail.createdAt)}</h6>
-      </div>
-      <h2>Reviews:</h2>
-      <div>
-        {shopDetail.reviews.length === 0 ? (<h3>No Reviews Yet</h3>) : shopDetail.reviews.map((review, idx) => (
-          <ReviewCard shopDetail={shopDetail} review={review} key={review._id} handleUpdateReview={handleUpdateReview} handleDeleteReview={handleDeleteReview} user={user} />
-        ))}
-      </div>
-      <h4>Review This Donut Shop:</h4>
-      <div>
-        <form onSubmit={handleAddReview}>
-          <textarea
-            name="content"
-            value={newReview.content}
-            onChange={(evt) => setNewReview({ ...newReview, [evt.target.name]: evt.target.value })}
-            placeholder="How were the donuts and your experience?"
-            required
-          />
+      <div className="ShopDetailContainer">
+        <div className="ShopDetail">
+          <h1 className="ShopName">{shopDetail.name} Details</h1>
+          <div className="ShopAttributes">
+            <h2 className="ShopLocation">{shopDetail.location}</h2>
+            <h4><span className="ShopTimestamp">Date Added:</span> {getDate(shopDetail.createdAt)}</h4>
+          </div>
+        </div>
 
-          <label htmlFor="select">Rating:</label>
-          <select
-            name="rating"
-            value={newReview.rating}
-            onChange={(evt) => setNewReview({ ...newReview, [evt.target.name]: evt.target.value })}
-            required
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
+        <h1 className="ReviewsHeadline">Reviews:</h1>
+        <div>
+          {shopDetail.reviews.length === 0 ? (<h1 className="NoReviews">No Reviews Yet</h1>) : shopDetail.reviews.map((review, idx) => (
+            <ReviewCard shopDetail={shopDetail} review={review} key={review._id} handleUpdateReview={handleUpdateReview} handleDeleteReview={handleDeleteReview} user={user} />
+          ))}
+        </div>
+          
+        <div className="ReviewFormContainer">
+          <h1 className="ReviewFormHeadline">Review This Donut Shop:</h1>
+          <form onSubmit={handleAddReview} className="ReviewForm">
+            <textarea
+              className="ReviewTextArea"
+              name="content"
+              value={newReview.content}
+              onChange={(evt) => setNewReview({ ...newReview, [evt.target.name]: evt.target.value })}
+              placeholder="How were the donuts and your experience?"
+              required
+            />
 
-          <button type="submit">Post Review</button>
-        </form>
+            <div className="ReviewRating">
+              <label htmlFor="select">Rating:</label>
+              <select
+                className="ReviewSelect"
+                name="rating"
+                value={newReview.rating}
+                onChange={(evt) => setNewReview({ ...newReview, [evt.target.name]: evt.target.value })}
+                required
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+
+            <button type="submit">Post Review</button>
+          </form>
+        </div>
       </div>
     </>
   );

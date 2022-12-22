@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as shopsAPI from '../../utilities/shops-api';
+import './UpdateShopPage.css';
 
 export default function UpdateShopPage({ shops, setShops}) {
   const navigate = useNavigate();
@@ -28,28 +29,40 @@ export default function UpdateShopPage({ shops, setShops}) {
 
   return(
     <>
-      <h1>Update Shop Post</h1>
-      <form onSubmit={handleSubmitEdits}>
-        <label htmlFor="input">Shop Name:</label>
-        <input
-          name="name"
-          type="text"
-          value={shopFormData.name}
-          onChange={handleChange}
-          placeholder="Name"
-        />
+      <h1 className="EditShopFormHeadline">Update Shop Post</h1>
+      <div className="ContainerContainer">
+        <div className="ShopFormContainer">
+          <form onSubmit={handleSubmitEdits} className="ShopForm">
+            <div className="ShopNameInput">
+              <label htmlFor="input" className="ShopNameLabel">Shop Name:</label>
+              <input
+                className="NewShopInput"
+                name="name"
+                type="text"
+                value={shopFormData.name}
+                onChange={handleChange}
+                placeholder="Name"
+              />
+            </div>
 
-        <label htmlFor="input">Location:</label>
-        <input
-          name="location"
-          type="text"
-          value={shopFormData.location}
-          onChange={handleChange}
-          placeholder="Street, City, State, Zip"
-        />
+            <div className="ShopLocationInput">
+              <label htmlFor="input" className="ShopLocationLabel">Location:</label>
+              <input
+                className="NewShopInput"
+                name="location"
+                type="text"
+                value={shopFormData.location}
+                onChange={handleChange}
+                placeholder="Street, City, State, Zip"
+              />
+            </div>
 
-        <button type="submit">Submit Edits</button>
-      </form>
+            <div className="AddShopButtonContainer">
+              <button type="submit">Submit Edits</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </>
   );
 }
