@@ -1,0 +1,31 @@
+.CommentCardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 4vmin;
+  padding-bottom: 2vmin;
+}
+
+.CommentCard {
+  height: 35vh;
+  width: 40vw;
+  background-color: rgb(202, 118, 135);
+  border: 1.5vmin solid black;
+  border-radius: 3vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.CommentTimestamp {
+  font-size: 2vmin;
+}
+
+.CommentContent {
+  font-size: 2.5vmin;
+  font-weight: bold;
+  text-align: left;
+  margin: 1.5vmin;
+}

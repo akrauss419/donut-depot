@@ -21,8 +21,8 @@ export default function ShopsListPage({ shops, setShops, user }) {
 
   return(
     <>
-      <h1>Explore Donut Shops</h1>
-      <div>
+      <h1 className="ShopListHeadline">Explore Donut Shops</h1>
+      <div className="ShopList">
         {shops.map((s, idx) => {
           return <ShopCard shop={s} key={idx} handleUpdateShop={handleUpdateShop} handleDeleteShop={handleDeleteShop} user={user} />;
         })}

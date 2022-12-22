@@ -20,23 +20,25 @@ export default function CommentCard({ comment, handleUpdateComment, handleDelete
             <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
           </>
         :
-          <>
-            <div>
-              {comment.content}
+          <div className="CommentCardContainer">
+            <div className="CommentCard">
+              <p className="CommentContent">{comment.content}</p>
+              <p className="CommentTimestamp">Posted by <span className="UserName">{user.name}</span> on {getDate(comment.createdAt)}</p>
+              <div className="CommentActionButtons">
+                <button onClick={() => setShowEditCommentForm(!showEditCommentForm)}>Edit</button>
+                <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+              </div>
             </div>
-            <p>Posted by {user.name} on {getDate(comment.createdAt)}</p>
-            <button onClick={() => setShowEditCommentForm(!showEditCommentForm)}>Edit</button>
-            <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
-          </>
+          </div>
         }
       </>
       :
-      <>
-        <div>
-          {comment.content}
+      <div className="CommentCardContainer">
+        <div className="CommentCard">
+          <p className="CommentContent">{comment.content}</p>
         </div>
-        <p>Posted by {comment.user} on {getDate(comment.createdAt)}</p>
-      </>
+        <p className="CommentTimestamp">Posted by <span className="UserName">{user.name}</span> on {getDate(comment.createdAt)}</p>
+      </div>
     }
     </div>
   );
