@@ -8,14 +8,14 @@ Users also have a unique profile page that supports the "My Donut Box" feature, 
 
 # Screenshots
 
-<img src="https://imgur.com/a/dNuikcX">
-<img src="https://imgur.com/dxbP3uj">
-<img src="https://imgur.com/a/ax99psR">
-<img src="https://imgur.com/a/JmmSB2y">
-<img src="https://imgur.com/a/VUs2Li1">
-<img src="https://imgur.com/a/XMAdyZs">
-<img src="https://imgur.com/a/2Aa7DLp">
-<img src="https://imgur.com/a/5U49Y9M">
+<img src="https://i.imgur.com/bOQzJdK.png">
+<img src="https://i.imgur.com/dxbP3uj.png">
+<img src="https://i.imgur.com/nhV4ZrM.png">
+<img src="https://i.imgur.com/lmoHPGN.png">
+<img src="https://i.imgur.com/5hCjygr.png">
+<img src="https://i.imgur.com/Gt5S2p1.png">
+<img src="https://i.imgur.com/rFNPs7Z.png">
+<img src="https://i.imgur.com/0AAxLc3.png">
 
 # Technologies Use
 
