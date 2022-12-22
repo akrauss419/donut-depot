@@ -31,7 +31,7 @@ Users also have a unique profile page that supports the "My Donut Box" feature, 
 
 # Getting Started
 
-Click to browse to Donut Depot -->
+Click to browse to Donut Depot --> https://donut-depot.herokuapp.com/
 
 Click to browse to Trello board --> https://trello.com/b/QwkCqzK5/project-4
 
