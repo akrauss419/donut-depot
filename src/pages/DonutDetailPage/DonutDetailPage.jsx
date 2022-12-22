@@ -9,10 +9,6 @@ export default function DonutDetailPage({ donuts, setDonuts, user }) {
   const [newComment, setNewComment] = useState({
     content: "",
   });
-  // const [title, setTitle] = useState('');
-  // const [photos, setPhotos] = useState([]);
-
-  // const fileInputRef = useRef();
   
   const { donutId } = useParams();
   
@@ -55,16 +51,6 @@ export default function DonutDetailPage({ donuts, setDonuts, user }) {
     });
   }
 
-  // async function handleUpload() {
-  //   const formData = new FormData();
-  //   formData.append('title', title);
-  //   formData.append('photo', fileInputRef.current.files[0]);
-  //   const newPhoto = await photosAPI.upload(formData);
-  //   setPhotos([newPhoto, ...photos]);
-  //   setTitle('');
-  //   fileInputRef.current.value = '';
-  // }
-
   function getDate(item) {
     const date = new Date(item);
     return date.toDateString();
@@ -72,39 +58,47 @@ export default function DonutDetailPage({ donuts, setDonuts, user }) {
   
   return(
     <>
-      <div>
-        <h1>{donutDetail.flavor}</h1>
-        <p>Type: {donutDetail.type}</p>
-        <p>Sprinkles: {donutDetail.sprinkles}</p>
-        <div>
-          {donutDetail.unique.length === 0 ? 
-            null
-          : 
-            <div>
-              <h6>Other Qualities:</h6>
-              <div>{donutDetail.unique}</div>
-            </div>
-          }
+      <div className="DonutDetailContainer"> 
+        <div className="DonutDetail">
+          <img className="DetailImage" src={donutDetail.url} />
+          <h1 className="DonutFlavor">{donutDetail.flavor}</h1>
+          <h2>Home: {donutDetail.shop}</h2>
+          <div className="DonutTraits">
+            <h3>Type: {donutDetail.type}</h3>
+            <h3>Sprinkles: {donutDetail.sprinkles}</h3>
+          </div>
+          <div>
+            {donutDetail.unique.length === 0 ? 
+              null
+            : 
+              <div>
+                <h6>Other Qualities:</h6>
+                <div>{donutDetail.unique}</div>
+              </div>
+            }
+          </div>
+          <h1>Rating: {donutDetail.rating}⭐️</h1>
+          <div className="DonutReview">
+            <h1>Review:</h1>
+            <p className="ReviewContent">{donutDetail.review}</p>
+          </div>
+          <h3 className="Timestamp">Date Added: {getDate(donutDetail.createdAt)}</h3>
         </div>
-        <p>Home: {donutDetail.shop}</p>
-        <h4>Rating: {donutDetail.rating}</h4>
-        <div>
-          <h5>Review:</h5>
-          <p>{donutDetail.review}</p>
-        </div>
-        <p>Date Added: {getDate(donutDetail.createdAt)}</p>
-
       </div>
-      <h2>Comments:</h2>
+
+      <div className="CommentsHeadline">
+        <h1>C</h1><h3 className="DonutEmoji">🍩</h3><h1>mments:</h1>
+      </div>
       <div>
-        {donutDetail.comments.length === 0 ? (<h3>No Comments Yet</h3>) : donutDetail.comments.map((comment) => (
+        {donutDetail.comments.length === 0 ? (<h1 className="NoComments">No Comments Yet</h1>) : donutDetail.comments.map((comment) => (
           <CommentCard donutDetail={donutDetail} comment={comment} key={comment._id} handleUpdateComment={handleUpdateComment} handleDeleteComment={handleDeleteComment} user={user} />
         ))}
       </div>
-      <h4>Comment on This Donut:</h4>
-      <div>
-        <form onSubmit={handleAddComment}>
+      <div className="CommentFormContainer">
+        <h1 className="CommentFormHeadline">Comment on This Donut:</h1>
+        <form onSubmit={handleAddComment} className="CommentForm">
           <textarea
+            className="CommentTextArea"
             name="content"
             value={newComment.content}
             onChange={(evt) => setNewComment({ content: evt.target.value })}

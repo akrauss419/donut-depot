@@ -4,6 +4,7 @@ import { getUser } from '../../utilities/users-service';
 import * as donutsAPI from '../../utilities/donuts-api';
 import * as shopsAPI from '../../utilities/shops-api';
 import AuthPage from '../AuthPage/AuthPage';
+import HomePage from '../HomePage/HomePage';
 import DonutsListPage from '../DonutsListPage/DonutsListPage';
 import NewDonutPage from '../NewDonutPage/NewDonutPage';
 import DonutDetailPage from '../DonutDetailPage/DonutDetailPage';
@@ -66,6 +67,7 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
           <Routes>
             {/* Route components in here */}
+            <Route path="/" element={<HomePage user={user} />} />
             <Route path="/donuts" element={<DonutsListPage donuts={donuts} setDonuts={setDonuts} user={user} />} />
             <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} setDonuts={setDonuts} addDonut={addDonut} />} />
             <Route path="/donuts/:donutId" element={<DonutDetailPage donuts={donuts} setDonuts={setDonuts} user={user} />} />

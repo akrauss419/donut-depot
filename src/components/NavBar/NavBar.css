@@ -1,0 +1,11 @@
+.NavBar {
+  font-size: 5vmin;
+  background-color: rgb(202, 118, 135);
+  padding: 3vmin auto;
+  margin: 0;
+}
+
+.NavBar > a {
+  font-size: 3.5vmin;
+  text-decoration: none;
+}

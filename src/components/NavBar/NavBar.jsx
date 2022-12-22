@@ -9,7 +9,9 @@ export default function NavBar({ user, setUser }) {
   }
 
   return (
-    <nav>
+    <nav className="NavBar">
+      <Link to="/">Donut Depot</Link>
+      &nbsp; | &nbsp;
       <Link to="/donuts">Donut Case</Link>
       &nbsp; 🍩 &nbsp;
       <Link to="/donuts/new">Add a Donut</Link>

@@ -1,0 +1,176 @@
+label {
+  font-size: 3.5vmin;
+  font-weight: bold;
+  color: rgb(116, 49, 22);
+}
+
+.DonutFormHeadline {
+  font-size: 6vmin;
+}
+
+.ContainerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.DonutFormContainer {
+  height: 120vh;
+  width: 58vw;
+  background-color: rgb(217, 184, 134);
+  border: 2vmin solid rgb(241, 184, 204);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10vmin;
+}
+
+.DonutForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 10vmin;
+}
+
+.FlavorInput {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.FlavorInput > * {
+  margin: 2vmin;
+}
+
+.FlavorLabel {
+  margin-right: 18vmin;
+}
+
+.TypeInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.TypeInput > * {
+  margin: 2vmin;
+}
+
+.TypeLabel {
+  margin-right: 19.9vmin;
+}
+
+.SprinklesInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SprinklesInput > * {
+  margin: 2vmin;
+}
+
+.SprinklesLabel {
+  margin-right: 13vmin;
+}
+
+.QualitiesInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.QualitiesInput > * {
+  margin: 2vmin;
+}
+
+.QualitiesLabel {
+  margin-right: 3.2vmin;
+}
+
+.ShopInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ShopInput > * {
+  margin: 2vmin;
+}
+
+.ShopLabel {
+  margin-right: 19.1vmin;
+}
+
+.ReviewInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ReviewInput > * {
+  margin: 2vmin;
+}
+
+.ReviewLabel {
+  margin-right: 16vmin;
+}
+
+.RatingInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.RatingInput > * {
+  margin: 2vmin;
+}
+
+.RatingLabel {
+  margin-right: 17.2vmin;
+}
+
+.DonutFormSelect {
+  height: 4vh;
+  width: 13vw;
+  font-size: 2.5vmin;
+}
+
+.DonutFormTextArea {
+  height: 12vh;
+  width: 24vw;
+}
+
+.PhotoUploadContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3vmin;
+  margin-left: 2.5vmin;
+}
+
+.PhotoInputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2vmin;
+}
+
+.PhotoInputs > * {
+  margin: 2vmin;
+}
+
+.AddDonutButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-left: 27vmin;
+}
+
+.AddDonutButton {
+ 
+}

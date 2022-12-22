@@ -52,100 +52,129 @@ export default function NewDonutPage({ donuts, setDonuts, addDonut }) {
 
   return (
     <>
-      <h1>Add a New Donut</h1>
-      <form onSubmit={handleAddDonut}>
-        <label htmlFor="input">Flavor:</label>
-        <input
-          name="flavor"
-          type="text"
-          value={newDonut.flavor}
-          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
-          placeholder="Glazed, Chocolate, etc."
-          required
-        />
+      <h1 className="DonutFormHeadline">Add a New Donut</h1>
+      <div className="ContainerContainer">
+        <div className="DonutFormContainer">
+          <form onSubmit={handleAddDonut} className="DonutForm">
+            <div className="FlavorInput">
+              <label htmlFor="input" className="FlavorLabel">Flavor:</label>
+              <input
+                name="flavor"
+                type="text"
+                value={newDonut.flavor}
+                onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
+                placeholder="Glazed, Chocolate, etc."
+                required
+              />
+            </div>
 
-        <label htmlFor="select">Type:</label>
-        <select
-          name="type"
-          value={newDonut.type}
-          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
-          required
-        >
-          <option value="Dough">Dough</option>
-          <option value="Cake">Cake</option>
-        </select>
+            <div className="TypeInput">
+              <label htmlFor="select" className="TypeLabel">Type:</label>
+              <select
+                className="DonutFormSelect"
+                name="type"
+                value={newDonut.type}
+                onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
+                required
+              >
+                <option value="Dough">Dough</option>
+                <option value="Cake">Cake</option>
+              </select>
+            </div>
 
-        <div
-          value={newDonut.sprinkles}
-          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
-        >
-          <label htmlFor="radio">Sprinkles:</label>
-          <label htmlFor="radio">Yes</label>
-          <input 
-            name="sprinkles"
-            type="radio"
-            value="Yes"
-            id="Yes"
-          />
-          <label htmlFor="radio">No</label>
-          <input 
-            name="sprinkles"
-            type="radio"
-            value="No"
-            id="No"
-            defaultChecked
-          />
+            <div
+              className="SprinklesInput"
+              value={newDonut.sprinkles}
+              onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
+            >
+              <label htmlFor="radio" className="SprinklesLabel">Sprinkles:</label>
+              <div>
+                <label htmlFor="radio">Yes</label>
+                <input 
+                  name="sprinkles"
+                  type="radio"
+                  value="Yes"
+                  id="Yes"
+                />
+              </div>
+              <div>
+                <label htmlFor="radio">No</label>
+                <input 
+                  name="sprinkles"
+                  type="radio"
+                  value="No"
+                  id="No"
+                  defaultChecked
+                />
+              </div>
+            </div>
+
+            <div className="QualitiesInput">
+              <label htmlFor="textarea" className="QualitiesLabel">Other Qualities:</label>
+              <textarea
+                className="DonutFormTextArea"
+                name="unique"
+                value={newDonut.unique}
+                onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
+                placeholder="What else makes this donut unique? (Special toppings, filling, etc.)"
+              />
+            </div>
+
+            <div className="ShopInput">
+              <label htmlFor="input" className="ShopLabel">Shop:</label>
+              <input
+                name="shop"
+                type="text"
+                value={newDonut.shop}
+                onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
+                placeholder="Who made this donut?"
+                required
+              />
+            </div>
+
+            <div className="ReviewInput">
+              <label htmlFor="textarea" className="ReviewLabel">Review:</label>
+              <textarea
+                className="DonutFormTextArea"
+                name="review"
+                value={newDonut.review}
+                onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
+                placeholder="Review this donut"
+                required
+              />
+            </div>
+
+            <div className="RatingInput">
+              <label htmlFor="select" className="RatingLabel">Rating:</label>
+              <select
+                className="DonutFormSelect"
+                name="rating"
+                value={newDonut.rating}
+                onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
+                required
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+
+            <div className="PhotoUploadContainer">
+              <label htmlFor="file">Show Us Your Donut:</label>
+              <div className="PhotoInputs">
+                <input name="title" type="text" onChange={(evt) => setTitle(evt.target.value)} placeholder="Photo Title" required />
+                <input type="file" ref={fileInputRef} required />
+              </div>
+            </div>
+
+            <div className="AddDonutButtonContainer">
+              <button type="submit" className="AddDonutButton">Add to Donut Case</button>
+            </div>
+          </form>
         </div>
-
-        <label htmlFor="textarea">Other Qualities:</label>
-        <textarea
-          name="unique"
-          value={newDonut.unique}
-          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
-          placeholder="What else makes this donut unique? (Special toppings, filling, etc.)"
-        />
-
-        <label htmlFor="input">Shop:</label>
-        <input
-          name="shop"
-          type="text"
-          value={newDonut.shop}
-          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
-          placeholder="Who made this donut?"
-          required
-        />
-
-        <label htmlFor="textarea">Review:</label>
-        <textarea
-          name="review"
-          value={newDonut.review}
-          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
-          placeholder="Review this donut"
-          required
-        />
-
-        <label htmlFor="select">Rating:</label>
-        <select
-          name="rating"
-          value={newDonut.rating}
-          onChange={(evt) => setNewDonut({ ...newDonut, [evt.target.name]: evt.target.value })}
-          required
-        >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-
-        <div>
-          <label htmlFor="file">Show Us Your Donut:</label>
-          <input name="title" type="text" onChange={(evt) => setTitle(evt.target.value)} placeholder="Photo Title" required />
-          <input type="file" ref={fileInputRef} required />
-        </div>
-
-        <button type="submit">Add to Donut Case</button>
-      </form>
+      </div>
     </>
   );
 }

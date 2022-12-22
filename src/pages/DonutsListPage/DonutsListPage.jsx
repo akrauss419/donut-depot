@@ -21,8 +21,8 @@ export default function DonutsListPage({ donuts, setDonuts, user }) {
 
   return (
     <>
-      <h1>Donuts List</h1>
-      <div>
+      <h1 className="DonutListHeadline">Donuts List</h1>
+      <div className="DonutList">
         {donuts.map((d, idx) => {
           return <DonutCard donut={d} key={idx} handleUpdateDonut={handleUpdateDonut} handleDeleteDonut={handleDeleteDonut} user={user} />;
         })}

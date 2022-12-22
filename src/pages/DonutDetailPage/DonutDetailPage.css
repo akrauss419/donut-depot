@@ -1,0 +1,98 @@
+.DonutDetailContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5vmin auto;
+}
+
+.DonutDetail {
+  height: 120vh;
+  width: 50vw;
+  background-color: rgb(217, 184, 134);
+  border: 2vmin solid rgb(241, 184, 204);
+  border-radius: 3vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.DetailImage {
+  height: 35vh;
+  width: 35vw;
+  border: 1.5vmin solid rgb(224, 149, 173);
+  margin-top: 0;
+}
+
+.DonutFlavor {
+  font-size: 6vmin;
+  margin: 1vmin auto;
+}
+
+.DonutTraits > * {
+  font-size: 2vmin;
+  display: inline;
+  margin-left: 2vmin;
+  margin-right: 2vmin;
+}
+
+.DonutReview {
+  height: 35vh;
+  width: 35vw;
+  background-color: rgb(241, 184, 204);
+  border: 1.5vmin solid rgb(116, 49, 22);
+}
+
+.ReviewContent {
+  font-size: 2.5vmin;
+  font-weight: bold;
+  text-align: left;
+  margin: 1.5vmin;
+}
+
+.Timestamp {
+  margin-top: 3.5vmin;
+}
+
+.CommentsHeadline > * {
+  font-size: 6vmin;
+  display: inline;
+}
+
+.DonutEmoji {
+  font-size: 4vmin;
+}
+
+.NoComments {
+  color: rgb(217, 184, 134);
+}
+
+.CommentFormContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6vmin;
+}
+
+.CommentForm {
+  height: 35vh;
+  width: 40vw;
+  background-color: rgb(224, 149, 173);
+  border: 1.5vmin solid rgb(217, 184, 134);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.CommentFormHeadline {
+  font-size: 4.5vmin;
+  color: rgb(224, 149, 173);
+}
+
+.CommentTextArea {
+  height: 20vh;
+  width: 30vw;
+  font-size: 2.5vmin;
+}

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as photosAPI from '../../utilities/photos-api';
-import PhotoCard from '../PhotoCard/PhotoCard';
 import './DonutCard.css';
 
 export default function DonutCard({ donut, handleDeleteDonut, user }) {
@@ -20,37 +19,37 @@ export default function DonutCard({ donut, handleDeleteDonut, user }) {
   return(
     <>
       {user._id === donut.user ?
-        <>
+        <div className="DonutCardDeck">
+          <div className="DonutCard">
+            <Link to={`/donuts/${donut._id}`}>
+              <div>
+                <img className="Images" src={donut.url} />
+              </div>
+              <div className="DonutCardDetails">
+                <h1 className="DonutFlavor">{donut.flavor}</h1>
+                <h3>Available at {donut.shop}</h3>
+                <p>Added by <span class="UserName">{donut.userName}</span> on {getDate(donut.createdAt)}</p>
+              </div>
+            </Link>
+              <div className="DonutButtonsContainter">
+                <button onClick={() => navigate(`/donuts/${donut._id}/update`)}>Edit Post</button>
+                <button onClick={() => handleDeleteDonut(donut._id)}>Delete Donut</button>
+              </div>
+          </div>
+        </div>
+        :  
+        <div className="DonutCard">
           <Link to={`/donuts/${donut._id}`}>
             <div>
-              {photos.map(p => <PhotoCard photo={p} key={p._id} />)}
+              <img className="Images" src={donut.url} />
             </div>
-            <div>
+            <div className="DonutCardDetails">
               <h1>{donut.flavor}</h1>
-              <p>Type: {donut.type}</p>
-              <p>Available at {donut.shop}</p>
+              <h3>Available at {donut.shop}</h3>
               <p>Added by {donut.userName} on {getDate(donut.createdAt)}</p>
             </div>
           </Link>
-            <div>
-              <button onClick={() => navigate(`/donuts/${donut._id}/update`)}>Edit Post</button>
-              <button onClick={() => handleDeleteDonut(donut._id)}>Delete Donut</button>
-            </div>
-        </>
-        :  
-        <>
-          <Link to={`/donuts/${donut._id}`}>
-            <div>
-              {photos.map(p => <PhotoCard photo={p} key={p._id} />)}
-            </div>
-            <div>
-              <h1>{donut.flavor}</h1>
-              <p>Type: {donut.type}</p>
-              <p>Available at {donut.shop}</p>
-              <p>Added by {donut.user} on {getDate(donut.createdAt)}</p>
-            </div>
-          </Link>
-        </>
+        </div>
       }
     </>
   );
