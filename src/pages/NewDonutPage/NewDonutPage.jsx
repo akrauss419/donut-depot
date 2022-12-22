@@ -33,7 +33,6 @@ export default function NewDonutPage({ donuts, setDonuts, addDonut }) {
       fileInputRef.current.value = '';
       newDonut.url = newPhoto.url;
       const allDonuts = await donutsAPI.create(newDonut);
-      console.log(newPhoto, allDonuts);
       setDonuts(allDonuts);
       setNewDonut({
         flavor: "",

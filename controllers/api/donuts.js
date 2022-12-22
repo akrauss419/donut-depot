@@ -46,7 +46,6 @@ async function upload(req, res) {
   try {
     console.log('upload');
     if (req.file) {
-      console.log(req.file);
       const photoURL = await uploadFile(req.file);
       const photoDoc = await Photo.create({
         url: photoURL,
