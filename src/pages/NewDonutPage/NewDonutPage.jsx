@@ -1,10 +1,10 @@
 import { useState, useRef } from 'react';
-import * as photosAPI from '../../utilities/photos-api';
+import * as donutsAPI from '../../utilities/donuts-api';
 import './NewDonutPage.css';
 
-export default function NewDonutPage({ addDonut }) {
+export default function NewDonutPage({ donuts, setDonuts, addDonut }) {
   const [title, setTitle] = useState('');
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState(null);
   const [newDonut, setNewDonut] = useState({
     flavor: "",
     type: "Dough",
@@ -13,34 +13,38 @@ export default function NewDonutPage({ addDonut }) {
     shop: "",
     review: "",
     rating: 3,
+    url: "",
     favorite: false,
   });
 
   const fileInputRef = useRef();
-
-  async function handleUpload() {
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('photo', fileInputRef.current.files[0]);
-    const newPhoto = await photosAPI.upload(formData);
-    setPhotos([newPhoto, ...photos]);
-    setTitle('');
-    fileInputRef.current.value = '';
-  }
   
-  function handleAddDonut(evt) {
+  async function handleAddDonut(evt) {
     evt.preventDefault();
-    addDonut(newDonut);
-    setNewDonut({
-      flavor: "",
-      type: "Dough",
-      sprinkles: "No",
-      unique: "",
-      shop: "",
-      review: "",
-      rating: 3,
-      favorite: false,
-    });
+    try {
+      if (fileInputRef.current.value === '') return;
+      const formData = new FormData()
+      formData.append('photo', fileInputRef.current.files[0]);
+      formData.append('name', title);
+      let newPhoto = await donutsAPI.upload(formData);
+      fileInputRef.current.value = '';
+      newDonut.url = newPhoto.url;
+      const allDonuts = await donutsAPI.create(newDonut);
+      console.log(newPhoto, allDonuts);
+      setDonuts(allDonuts);
+      setNewDonut({
+        flavor: "",
+        type: "Dough",
+        sprinkles: "No",
+        unique: "",
+        shop: "",
+        review: "",
+        rating: 3,
+        url: ""
+      });
+    } catch {
+      return 'Validation Failed';
+    }
   }
 
   return (
@@ -131,18 +135,14 @@ export default function NewDonutPage({ addDonut }) {
           <option value="5">5</option>
         </select>
 
+        <div>
+          <label htmlFor="file">Show Us Your Donut:</label>
+          <input name="title" type="text" onChange={(evt) => setTitle(evt.target.value)} placeholder="Photo Title" required />
+          <input type="file" ref={fileInputRef} required />
+        </div>
+
         <button type="submit">Add to Donut Case</button>
       </form>
-      <div>
-        <label htmlFor="file">Show Us Your Donut:</label>
-        <input type="file" ref={fileInputRef} />
-        <input
-          value={title}
-          onChange={(evt) => setTitle(evt.target.value)}
-          placeholder="Photo Title"
-        />
-        <button onClick={handleUpload}>Upload Photo</button>
-      </div>
     </>
   );
 }

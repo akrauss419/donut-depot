@@ -42,6 +42,7 @@ const donutSchema = new Schema({
   // }],
   comments: [commentSchema],
   shop: String,
+  url: String,
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',

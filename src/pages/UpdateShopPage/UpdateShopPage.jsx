@@ -1,11 +1,20 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import * as shopsAPI from '../../utilities/shops-api';
 
-export default function UpdateShopPage({ shops, handleUpdateShop }) {
+export default function UpdateShopPage({ shops, setShops}) {
+  const navigate = useNavigate();
   const { shopId } = useParams();
   const changedShop = shops.find((s) => s._id === shopId);
   const [shopFormData, setShopFormData] = useState(changedShop);
   if (!changedShop) return null;
+
+  async function handleUpdateShop(shopFormData, shopId) {
+    await shopsAPI.updateShop(shopFormData, shopId);
+    const updatedShops = await shopsAPI.index();
+    setShops(updatedShops);
+    navigate(`/shops/${shopId}`);
+  }
 
   function handleChange(evt) {
     const updateShop = {...shopFormData, [evt.target.name]: evt.target.value};

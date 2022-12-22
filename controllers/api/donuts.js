@@ -1,10 +1,13 @@
 const Donut = require('../../models/donut');
+const Photo = require('../../models/photo');
+const uploadFile = require('../../config/upload-file');
 
 module.exports = {
   index,
   create,
   updateDonut,
   delete: deleteDonut,
+  upload
 };
 
 async function index(req, res) {
@@ -36,4 +39,23 @@ async function deleteDonut(req, res) {
   req.body.user = req.user._id;
   const donut = await Donut.findByIdAndDelete(req.params.id);
   res.json(donut);
+}
+
+async function upload(req, res) {
+  try {
+    console.log('upload');
+    if (req.file) {
+      console.log(req.file);
+      const photoURL = await uploadFile(req.file);
+      const photoDoc = await Photo.create({
+        url: photoURL,
+        title: req.body.title
+      });
+      res.json(photoDoc);
+    } else {
+      throw new Error('Must select a file');
+    }
+  } catch (err) {
+    res.status(400).json(err.message);
+  }
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import * as commentsAPI from '../../utilities/comments-api';
 import CommentCard from '../../components/CommentCard/CommentCard';
@@ -9,6 +9,10 @@ export default function DonutDetailPage({ donuts, setDonuts, user }) {
   const [newComment, setNewComment] = useState({
     content: "",
   });
+  // const [title, setTitle] = useState('');
+  // const [photos, setPhotos] = useState([]);
+
+  // const fileInputRef = useRef();
   
   const { donutId } = useParams();
   
@@ -51,6 +55,16 @@ export default function DonutDetailPage({ donuts, setDonuts, user }) {
     });
   }
 
+  // async function handleUpload() {
+  //   const formData = new FormData();
+  //   formData.append('title', title);
+  //   formData.append('photo', fileInputRef.current.files[0]);
+  //   const newPhoto = await photosAPI.upload(formData);
+  //   setPhotos([newPhoto, ...photos]);
+  //   setTitle('');
+  //   fileInputRef.current.value = '';
+  // }
+
   function getDate(item) {
     const date = new Date(item);
     return date.toDateString();
@@ -79,6 +93,7 @@ export default function DonutDetailPage({ donuts, setDonuts, user }) {
           <p>{donutDetail.review}</p>
         </div>
         <p>Date Added: {getDate(donutDetail.createdAt)}</p>
+
       </div>
       <h2>Comments:</h2>
       <div>

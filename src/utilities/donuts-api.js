@@ -16,3 +16,8 @@ export async function updateDonut(donutFormData, id) {
 export async function deleteDonut(id) {
   return sendRequest(`${BASE_URL}/${id}`, 'DELETE');
 }
+
+export function upload(formData) {
+  console.log(formData);
+  return sendRequest(`${BASE_URL}/upload`, 'POST', formData, true);
+}

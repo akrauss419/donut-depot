@@ -67,7 +67,7 @@ export default function App() {
           <Routes>
             {/* Route components in here */}
             <Route path="/donuts" element={<DonutsListPage donuts={donuts} setDonuts={setDonuts} user={user} />} />
-            <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} addDonut={addDonut} />} />
+            <Route path="/donuts/new" element={<NewDonutPage donuts={donuts} setDonuts={setDonuts} addDonut={addDonut} />} />
             <Route path="/donuts/:donutId" element={<DonutDetailPage donuts={donuts} setDonuts={setDonuts} user={user} />} />
             <Route path="/donuts/:donutId/update" element={<UpdateDonutPage donuts={donuts} setDonuts={setDonuts} />} />
             <Route path="/comments/:id/update" element={<UpdateCommentPage />} />

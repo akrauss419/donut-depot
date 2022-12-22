@@ -6,7 +6,11 @@ const photoSchema = new Schema({
     type: String,
     required: true
   },
-  title: String
+  title: String,
+  // donut: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Donut',
+  // }
 }, {
   timestamps: true,
 });
