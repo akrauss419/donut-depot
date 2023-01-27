@@ -23,7 +23,7 @@ export default function NavBar({ user, setUser }) {
       </div>
       <div className="UserNeeds">
         &nbsp;&nbsp;
-        <span>Welcome, {user.name}</span>
+        <span>Welcome {user.name}!</span>
         &nbsp;&nbsp;
         <div className="UserLinks">
           <Link to="/profile">My Donut Box</Link>
