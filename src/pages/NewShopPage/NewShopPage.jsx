@@ -1,19 +1,25 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import * as shopsAPI from '../../utilities/shops-api';
 import './NewShopPage.css';
 
-export default function NewShopPage({ addShop }) {
+export default function NewShopPage({ setShops, addShop }) {
   const [newShop, setNewShop] = useState({
     name: "",
     location: ""
   });
 
-  function handleAddShop(evt) {
+  const navigate = useNavigate();
+
+  async function handleAddShop(evt) {
     evt.preventDefault();
-    addShop(newShop);
+    const allShops = await shopsAPI.create(newShop);
+    setShops(allShops);
     setNewShop({
       name: "",
       location: ""
     });
+    navigate('/shops');
   }
 
   return(

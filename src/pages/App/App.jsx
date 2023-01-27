@@ -74,7 +74,7 @@ export default function App() {
             <Route path="/donuts/:donutId/update" element={<UpdateDonutPage donuts={donuts} setDonuts={setDonuts} />} />
             <Route path="/comments/:id/update" element={<UpdateCommentPage />} />
             <Route path="/shops" element={<ShopsListPage shops={shops} setShops={setShops} user={user} />} />
-            <Route path="/shops/new" element={<NewShopPage shops={shops} addShop={addShop} />} />
+            <Route path="/shops/new" element={<NewShopPage shops={shops} setShops={setShops} addShop={addShop} />} />
             <Route path="/shops/:shopId" element={<ShopDetailPage shops={shops} setShops={setShops} user={user} />} />
             <Route path="/shops/:shopId/update" element={<UpdateShopPage shops={shops} setShops={setShops} />} />
             <Route path="/reviews/:id/update" element={<UpdateReviewPage />} />
