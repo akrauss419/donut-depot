@@ -79,7 +79,9 @@ code {
 }
 
 .form-container {
+  width: 70vw;
   padding: 3vmin;
+  margin-bottom: 10vmin;
   background-color: var(--tan-1);
   border: .1vmin solid var(--tan-3);
   border-radius: 1vmin;

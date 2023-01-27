@@ -10,21 +10,27 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav className="NavBar">
-      <Link to="/">Donut Depot</Link>
-      &nbsp; | &nbsp;
-      <Link to="/donuts">Donut Case</Link>
-      &nbsp; 🍩 &nbsp;
-      <Link to="/donuts/new">Add a Donut</Link>
-      &nbsp; | &nbsp;
-      <Link to="/shops">Donut Shops</Link>
-      &nbsp; 🏬 &nbsp;
-      <Link to="/shops/new">Add a Shop</Link>
-      &nbsp;&nbsp;
-      <span>Welcome, {user.name}</span>
-      &nbsp;&nbsp;
-      <Link to="/profile">My Donut Box</Link>
-      &nbsp; 😋 &nbsp;
-      <Link to="" onClick={handleLogOut}>Log Out</Link>
+      <div className="DonutsShops"> 
+        <Link to="/">Donut Depot</Link>
+        &nbsp; | &nbsp;
+        <Link to="/donuts">Donut Case</Link>
+        &nbsp; 🍩 &nbsp;
+        <Link to="/donuts/new">Add a Donut</Link>
+        &nbsp; | &nbsp;
+        <Link to="/shops">Donut Shops</Link>
+        &nbsp; 🏬 &nbsp;
+        <Link to="/shops/new">Add a Shop</Link>
+      </div>
+      <div className="UserNeeds">
+        &nbsp;&nbsp;
+        <span>Welcome, {user.name}</span>
+        &nbsp;&nbsp;
+        <div className="UserLinks">
+          <Link to="/profile">My Donut Box</Link>
+          &nbsp; 😋 &nbsp;
+          <Link to="" onClick={handleLogOut}>Log Out</Link>
+        </div>
+      </div>
     </nav>
   );
 }

@@ -18,7 +18,7 @@ export default function DonutDetailPage({ donuts, setDonuts, user }) {
       setDonutDetail(donut);
     }
     getDonut();
-  }, [donutDetail])
+  }, [donutDetail]);
   
   if (!donutDetail) return null;
 

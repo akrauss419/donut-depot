@@ -1,11 +1,46 @@
 .NavBar {
-  font-size: 5vmin;
+  font-size: 3vmin;
   background-color: rgb(202, 118, 135);
   padding: 3vmin auto;
   margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .NavBar > a {
-  font-size: 3.5vmin;
+  font-size: 2vmin;
+}
+
+.DonutsShops {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 4vmin;
+}
+
+.DonutsShops > a {
+  text-decoration: none;
+}
+
+.UserNeeds {
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -1vmin;
+}
+
+.UserLinks {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: -2vmin;
+  margin-bottom: 2vmin;
+}
+
+.UserLinks > a {
   text-decoration: none;
 }
